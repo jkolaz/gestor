@@ -1,0 +1,10 @@
+# Projects files
+/nbproject/
+.idea/
+
+# Files
+application/views/templates_c/*.php
+.htaccess
+
+/cache/
+/application/cache/
