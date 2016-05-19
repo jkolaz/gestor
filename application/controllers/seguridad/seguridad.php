@@ -36,7 +36,7 @@ class Seguridad extends CI_Controller{
                 
                 $arreglo['user'] = $objAdm[0]->adm_id;
                 $arreglo['usuario'] = $objAdm[0]->adm_nombre.' '.$objAdm[0]->adm_apellidos;
-                $arreglo['user'] = $objAdm[0]->adm_nick;
+                $arreglo['nick'] = $objAdm[0]->adm_nick;
                 $arreglo['correo'] = $objAdm[0]->adm_correo;
                 $arreglo['idRol'] = $objAdm[0]->ta_id;
                 $arreglo['rol'] = $objAdm[0]->ta_nombre;

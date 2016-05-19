@@ -20,7 +20,9 @@
         </footer>
     </section>
 </div>
-
+<script type="text/javascript">
+    var base_url = '{$SERVER_ADMIN}';
+</script>
 <!-- Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery/jquery.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
@@ -81,4 +83,7 @@
             icon: 'fa fa-check'
     });*/
 </script>
+{/if}
+{if $js_script neq ""}
+<script src="{$DIR_PRINCIPAL}assets/{$js_script}"></script>
 {/if}

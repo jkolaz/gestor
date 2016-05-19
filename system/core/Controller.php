@@ -159,7 +159,12 @@ class CI_Controller {
             $this->_txt_message = $message[$idMessage];
         }
         
-        public function writeLog($mensaje, $admin = 0, $tipo = ""){
+        public function writeLog($mensaje, $admin = 0, $tipo = "", $level=1){
+            /*
+             * var @$level
+             * 1: info
+             * 2: warming
+             */
             if($admin == 0){
                 $admin = $usuario = $this->session->userdata('user');
             }
@@ -170,7 +175,7 @@ class CI_Controller {
             if ( ! $fp = @fopen($archivo, FOPEN_WRITE_CREATE)){
                 die('No se pudo crear el fichero...!');
             }
-            $linea = date('Y-m-d H:i:s'). '|'.$mensaje.'|'.$admin. '|'. $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] . '|'. $_SERVER['HTTP_USER_AGENT']."\n";
+            $linea = date('Y-m-d H:i:s'). '|'.$mensaje.'|'.$admin. '|'. $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'] . '|'. $_SERVER['HTTP_USER_AGENT'].'|'.$level."\n";
             flock($fp, LOCK_EX);
             fwrite($fp, $linea);
             flock($fp, LOCK_UN);

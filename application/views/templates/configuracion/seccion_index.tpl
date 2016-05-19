@@ -18,16 +18,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {if $objTA|@count gt 0}
-                            {section name=tipo loop=$objTA}
+                        {if $objSeccion|@count gt 0}
+                            {section name=tipo loop=$objSeccion}
                             <tr class="active">
-                                <td>{$objTA[tipo]->ta_nombre}</td>
-                                <td>{$objTA[tipo]->ta_estado}</td>
+                                <td>{$objSeccion[tipo]->sec_nombre}</td>
+                                <td>{$objSeccion[tipo]->sec_estado}</td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/tipoAdmin/editar/{$objTA[tipo]->ta_id}.html" title="Editar {$objTA[tipo]->ta_nombre}">
+                                    <a href="{$SERVER_ADMIN}configuracion/seccion/editar/{$objSeccion[tipo]->sec_id}.html" title="Editar {$objSeccion[tipo]->sec_nombre}">
                                         <i class="fa fa-pencil"></i>
-                                    </a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="delete-row" href="javascript:;" onclick="eliminar({$objTA[tipo]->ta_id})" title="Eliminar {$objTA[tipo]->ta_nombre}">
+                                    </a>&nbsp;&nbsp;&nbsp;
+                                    <a class="delete-row" href="javascript:;" onclick="eliminar({$objSeccion[tipo]->sec_id})" title="Eliminar {$objSeccion[tipo]->sec_nombre}">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </td>

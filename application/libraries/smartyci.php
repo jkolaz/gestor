@@ -55,6 +55,7 @@ class Smartyci extends Smarty{
         $this->assign("fileupload", $this->fileupload);
         $this->assign("wizard", $this->wizard);
         $this->assign("formulario", $this->formulario);
+        $this->assign("js_script", '');
         
         //$this->display_web();
     }

@@ -8,3 +8,5 @@ application/views/templates_c/*.php
 
 /cache/
 /application/cache/
+/application/logs/web/
+/application/logs/
