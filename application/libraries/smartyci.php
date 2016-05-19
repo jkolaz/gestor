@@ -31,6 +31,7 @@ class Smartyci extends Smarty{
     var $fileupload = 0;
     var $wizard = 0;
     var $formulario = 0;
+    var $form = 0;
     
     public function __construct(){
         parent::__construct();
@@ -55,6 +56,7 @@ class Smartyci extends Smarty{
         $this->assign("fileupload", $this->fileupload);
         $this->assign("wizard", $this->wizard);
         $this->assign("formulario", $this->formulario);
+        $this->assign("form", $this->form);
         $this->assign("js_script", '');
         
         //$this->display_web();

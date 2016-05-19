@@ -8,12 +8,23 @@
         <h2 class="panel-title">Tipo de Administradores</h2>
     </header>
     <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-md">
+                    <button id="addToTable" class="btn btn-primary" id="nuevo">
+                        Registrar nueva sede
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
             <div class="table-responsive">
                     <table class="table mb-none">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
                                 <th>Estado</th>
+                                <th>Secciones web</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -23,6 +34,12 @@
                             <tr class="active">
                                 <td>{$objSede[tipo]->sed_nombre}</td>
                                 <td>{$objSede[tipo]->sed_estado}</td>
+                                <td class="actions">
+                                    <a href="{$SERVER_ADMIN}configuracion/sede/seccionWeb/{$objSede[tipo]->sed_id}.html" title="Editar {$objSede[tipo]->sed_nombre}">
+                                        <i class="fa fa-key"></i>
+                                        <span>Secciones web</span>
+                                    </a>
+                                </td>
                                 <td class="actions">
                                     <a href="{$SERVER_ADMIN}configuracion/sede/editar/{$objSede[tipo]->sed_id}.html" title="Editar {$objSede[tipo]->sed_nombre}">
                                         <i class="fa fa-pencil"></i>

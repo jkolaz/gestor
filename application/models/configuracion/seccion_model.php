@@ -23,11 +23,12 @@ class Seccion_model extends CI_Controller{
         $this->load->database();
     }
     
-    public function getAllSeccion(){
-        $where = array();
-        $where['sec_estado'] = 1;
+    public function getAllSeccion($where = array()){
+        if(count($where)>0){
+            $this->db->where($where);
+        }
         
-        $query = $this->db->where($where)->order_by('sec_nombre')->get(self::$_table);
+        $query = $this->db->order_by('sec_nombre')->get(self::$_table);
         
         if($query->num_rows > 0){
             return $query->result();

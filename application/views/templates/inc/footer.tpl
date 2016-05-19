@@ -39,6 +39,9 @@
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 {/if}
+{if $form gt 0}
+    <script src="{$DIR_PRINCIPAL}assets/vendor/ios7-switch/ios7-switch.js"></script>
+{/if}
 {if $fileupload gt 0}
 <!-- Specific Page Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-autosize/jquery.autosize.js"></script>
@@ -83,6 +86,9 @@
             icon: 'fa fa-check'
     });*/
 </script>
+{/if}
+{if $form gt 0}
+<script src="{$DIR_PRINCIPAL}assets/javascripts/forms/examples.advanced.form.js" /></script>
 {/if}
 {if $js_script neq ""}
 <script src="{$DIR_PRINCIPAL}assets/{$js_script}"></script>
