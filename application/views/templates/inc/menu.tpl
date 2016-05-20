@@ -20,72 +20,28 @@
                             <span>Panel</span>
                         </a>
                     </li>
+                    {if $menu|@count gt 0}
+                        {section name=id loop=$menu}
                     <li class="nav-parent">
                         <a>
-                            <i class="fa fa-key" aria-hidden="true"></i>
-                            <span>Seguridad</span>
+                            <i class="fa {$menu[id]->mod_icon}" aria-hidden="true"></i>
+                            <span>{$menu[id]->mod_nombre}</span>
                         </a>
+                        {if $menu[id]->mod_paginas|@count gt 0}
                         <ul class="nav nav-children">
+                            {section name=sub_menu loop=$menu[id]->mod_paginas}
                             <li>
-                                <a href="{$SERVER_ADMIN}seguridad/administrador/index.html">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    <span>Ver Administradores</span>
+                                <a href="{$SERVER_ADMIN}{$menu[id]->mod_url}/{$menu[id]->mod_paginas[sub_menu]->pag_url}.html">
+                                    <i class="fa {$menu[id]->mod_paginas[sub_menu]->pag_icon}" aria-hidden="true"></i>
+                                    <span>{$menu[id]->mod_paginas[sub_menu]->pag_nombre}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{$SERVER_ADMIN}seguridad/log/readLog/20160509.html">
-                                    <i class="fa fa-bug" aria-hidden="true"></i>
-                                    <span>Ver Log</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{$SERVER_ADMIN}seguridad/log/readLog/20160509.html">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                    <span>Permisos</span>
-                                </a>
-                            </li>
+                            {/section}
                         </ul>
-                    </li>
-                    <li class="nav-parent">
-                        <a>
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                            <span>Configuración</span>
-                        </a>
-                        <ul class="nav nav-children">
-                            <li>
-                                <a href="{$SERVER_ADMIN}configuracion/tipoAdmin/index.html">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                    <span>Tipo de administrador</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{$SERVER_ADMIN}configuracion/sede/index.html">
-                                    <i class="fa fa-building" aria-hidden="true"></i>
-                                    <span>Sede</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{$SERVER_ADMIN}configuracion/seccion/index.html">
-                                    <i class="fa fa-globe" aria-hidden="true"></i>
-                                    <span>Secciones Web</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-parent">
-                        <a>
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            <span>Secciones Web</span>
-                        </a>
-                        <ul class="nav nav-children">
-                            <li>
-                                <a href="{$SERVER_ADMIN}seguridad/administrador/index.html">
-                                    <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                    <span>Ver secciones</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                        {/if}
+                    </li>        
+                        {/section}
+                    {/if}
                 </ul>
             </nav>
 				

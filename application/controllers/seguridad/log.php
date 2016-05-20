@@ -20,7 +20,8 @@ class Log extends CI_Controller{
     }
     
     public function index(){
-        
+        $this->smartyci->assign('listado', 'Log de actividades');
+        $this->smartyci->show_page(NULL);
     }
     
     public function readLog($fecha){

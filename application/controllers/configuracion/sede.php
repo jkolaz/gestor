@@ -16,7 +16,7 @@ class Sede extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
-        $this->load->model('configuracion/sedeSeccion_model', 'sede_seccion');
+        $this->load->model('configuracion/sedeseccion_model', 'sede_seccion');
         $this->load->model('configuracion/sede_model', 'sede');
         $this->load->model('configuracion/seccion_model', 'seccion');
         $this->smartyci->assign('listado', 'Sedes');

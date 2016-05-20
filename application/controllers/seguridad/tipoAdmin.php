@@ -16,7 +16,7 @@ class TipoAdmin extends CI_Controller{
     
     public function __construct() {
         parent::__construct();
-        $this->load->model('configuracion/tipoAdmin_model', 'TA');
+        $this->load->model('seguridad/tipoadmin_model', 'TA');
         $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
     public function index(){
@@ -35,7 +35,7 @@ class TipoAdmin extends CI_Controller{
             $this->TA->getValsForm($_POST);
             $this->TA->update();
             $this->writeLog("Editó el tipo de administrador {$this->TA->ta_nombre}(id::{$this->TA->ta_id}).");
-            redirect('configuracion/tipoAdmin/index');
+            redirect('seguridad/tipoAdmin/index');
         }
         $this->smartyci->assign('ID', $id);
         $this->smartyci->assign('TA', $this->TA);
@@ -47,6 +47,6 @@ class TipoAdmin extends CI_Controller{
         $this->TA->ta_estado = 2;
         $this->TA->update();
         $this->writeLog("Eliminó el tipo de administrador {$this->TA->ta_nombre}(id::{$this->TA->ta_id})");
-        redirect('configuracion/tipoAdmin/index');
+        redirect('seguridad/tipoAdmin/index');
     }
 }

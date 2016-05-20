@@ -11,7 +11,7 @@
  *
  * @author VMC-D02
  */
-class SedeSeccion_model extends CI_Model{
+class Sedeseccion_model extends CI_Model{
     //put your code here
     private static $_table = 'gc_sede_seccion';
     private static $_PK = 'ss_id';

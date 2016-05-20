@@ -130,9 +130,8 @@ class Smartyci extends Smarty{
         $this->assign($var, $html);
     }
     function menu($cache_id){
-        $this->ci->load->model('seguridad/permiso_model', "permiso");
-        $objPermiso = $this->ci->permiso->getPermisosByUser(1);
-        imprimir($objPermiso);exit;
+        $objPermiso = $this->ci->permiso_model->getPermisosByUser(1);
+        $this->assign('menu', $objPermiso);
         $this->include_template("menu", "inc/menu", $cache_id);
     }
     

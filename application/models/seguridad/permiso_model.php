@@ -13,8 +13,8 @@
  */
 class Permiso_model extends CI_Model{
     //put your code here
-    private static $_table = 'gc_permiso';
-    private static $_PK = 'per_id';
+    private static $_table;
+    private static $_PK;
     public $per_id;
     public $per_estado;
     public $per_crear;
@@ -26,6 +26,8 @@ class Permiso_model extends CI_Model{
     public function __construct() {
         parent::__construct();
         $this->load->database();
+        self::$_table = 'gc_permiso';
+        self::$_PK = 'per_id';
     }
     
     public function getPermisosByUser($id){
@@ -33,8 +35,11 @@ class Permiso_model extends CI_Model{
         $sql = "select 
                     gc_pagina.pag_id,
                     gc_pagina.pag_nombre,
+                    gc_pagina.pag_url,
+                    gc_pagina.pag_icon,
                     gc_modulo.mod_id,
-                    gc_modulo.mod_nombre
+                    gc_modulo.mod_nombre,
+                    gc_modulo.mod_url
                 from
                     gc_administrador
                         inner join
@@ -51,7 +56,8 @@ class Permiso_model extends CI_Model{
                         and gc_tipo_admin.ta_estado = 1
                         and gc_permiso.per_estado = 1
                         and gc_pagina.pag_estado = 1
-                        and gc_modulo.mod_estado = 1";
+                        and gc_modulo.mod_estado = 1
+                order by gc_pagina.pag_nombre";
         $query = $this->db->query($sql);
         if ($query->num_rows > 0){
             $result = $query->result();
@@ -70,6 +76,8 @@ class Permiso_model extends CI_Model{
                                 $std = new stdClass();
                                 $std->pag_id = $val->pag_id;
                                 $std->pag_nombre = $val->pag_nombre;
+                                $std->pag_url = $val->pag_url;
+                                $std->pag_icon = $val->pag_icon;
                                 $objModulo[$id]->mod_paginas[] = $std;
                             }
                         }
@@ -84,7 +92,9 @@ class Permiso_model extends CI_Model{
     public function getModulo($ids){
         $sql = "select 
                     mod_id,
-                    mod_nombre
+                    mod_nombre,
+                    mod_url,
+                    mod_icon
                 from
                     gc_modulo
                 where
