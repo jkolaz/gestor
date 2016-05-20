@@ -55,7 +55,7 @@ class Administrador_model extends CI_Model{
         $where = array();
         $where['adm_ta_id'] = $tipo;
         $query = $this->db->where($where)
-                ->join(self::$_table2, 'sed_id=adm_sed_id')
+                ->join(self::$_table2, 'sed_id=adm_sed_id', 'left')
                 ->get(self::$_table);
         if($query->num_rows > 0){
             return $query->result();

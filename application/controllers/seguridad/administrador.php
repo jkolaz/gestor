@@ -23,7 +23,6 @@ class Administrador extends CI_Controller{
             redirect(URL_PANEL);
         }
         $objTipoAdmin = $this->adm->getTipoAdmin();
-//        imprimir($objTipoAdmin);exit;
         $this->smartyci->assign('objTipoAdmin', $objTipoAdmin);
         $this->smartyci->show_page(NULL,  uniqid());
     }

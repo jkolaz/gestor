@@ -10,8 +10,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">
-                <div class="mb-md">
-                    <button id="addToTable" class="btn btn-primary" id="nuevo">
+                <div class="mb-md" id="nuevo">
+                    <button id="addToTable" class="btn btn-primary">
                         Registrar nueva sede
                         <i class="fa fa-plus"></i>
                     </button>
