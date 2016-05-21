@@ -34,7 +34,7 @@ class TipoAdmin extends CI_Controller{
         if(isset($_POST['txt_action']) && $_POST['txt_action'] == 'editar'){
             $this->TA->getValsForm($_POST);
             $this->TA->update();
-            $this->writeLog("Editó el tipo de administrador {$this->TA->ta_nombre}(id::{$this->TA->ta_id}).");
+            $this->writeLog("Editó el tipo de administrador {$this->TA->ta_nombre}(id::{$this->TA->ta_id})");
             redirect('seguridad/tipoAdmin/index');
         }
         $this->smartyci->assign('ID', $id);

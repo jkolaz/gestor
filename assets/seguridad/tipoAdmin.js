@@ -1,4 +1,4 @@
-var controlador = 'configuracion/tipoAdmin/';
+var controlador = 'seguridad/tipoAdmin/';
 jQuery(document).ready( function() {
     
 });

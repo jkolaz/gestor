@@ -5,7 +5,7 @@
 <section class="panel">
     <header class="panel-heading">
 
-        <h2 class="panel-title">Tipo de Administradores</h2>
+        <h2 class="panel-title">Secciones Web</h2>
     </header>
     <div class="panel-body">
             <div class="table-responsive">

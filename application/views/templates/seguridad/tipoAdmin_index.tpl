@@ -13,6 +13,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Permisos</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -22,9 +23,14 @@
                             {section name=tipo loop=$objTA}
                             <tr class="active">
                                 <td>{$objTA[tipo]->ta_nombre}</td>
+                                <td class="actions">
+                                    <a href="{$SERVER_ADMIN}seguridad/permisos/index/{$objTA[tipo]->ta_id}.html" class="text-primary">
+                                        <i class="fa fa-key"></i> <span>Permisos</span>
+                                    </a>
+                                </td>
                                 <td>{$objTA[tipo]->ta_estado}</td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/tipoAdmin/editar/{$objTA[tipo]->ta_id}.html" title="Editar {$objTA[tipo]->ta_nombre}">
+                                    <a href="{$SERVER_ADMIN}seguridad/tipoAdmin/editar/{$objTA[tipo]->ta_id}.html" title="Editar {$objTA[tipo]->ta_nombre}">
                                         <i class="fa fa-pencil"></i>
                                     </a>&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a class="delete-row" href="javascript:;" onclick="eliminar({$objTA[tipo]->ta_id})" title="Eliminar {$objTA[tipo]->ta_nombre}">

@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-md-12">
         <form id="form" action="{$SERVER_ADMIN}configuracion/sede/nuevo.html" method="post" class="form-horizontal">
-            <input name="txt_action" id="txt_action" type="hidden" value="editar">
+            <input name="txt_action" id="txt_action" type="hidden" value="nuevo">
             <section class="panel">
                 <header class="panel-heading">
 
-                    <h2 class="panel-title">Editar sede</h2>
+                    <h2 class="panel-title">Nueva sede</h2>
                 </header>
                 <div class="panel-body">
                     <div class="form-group">

@@ -46,9 +46,10 @@ define("IS_PRODUCTION", FALSE);
 define("SERVER_HTTPS_PRO", "http://");
 define("SUBCARPETA_NAME", "/");
 define("SERVER_PATH", $_SERVER['DOCUMENT_ROOT'] . SUBCARPETA_NAME);
+define("CARPETA", "gestor/");
 if(IS_PRODUCTION){
-    define("SERVER_NAME", SERVER_HTTPS_PRO . 'www.jkolaz.com/tesis/');
-    define("PATH_ADMIN", SERVER_PATH.'tesis/' );
+    define("SERVER_NAME", SERVER_HTTPS_PRO . 'www.jkolaz.com/'.CARPETA);
+    define("PATH_ADMIN", SERVER_PATH.CARPETA );
 }else{
     define("SERVER_NAME", SERVER_HTTPS_PRO . 'www.contenidos.devel/');
     define("PATH_ADMIN", SERVER_PATH );

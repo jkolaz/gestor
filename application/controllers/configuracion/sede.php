@@ -95,7 +95,7 @@ class Sede extends CI_Controller{
     }
     
     public function nuevo(){
-        if(isset($_POST['txt_action']) && $_POST['txt_action'] == 'editar'){
+        if(isset($_POST['txt_action']) && $_POST['txt_action'] == 'nuevo'){
             $this->sede->getValsForm($_POST);
             $this->sede->insert();
             $this->writeLog("Registro la sede {$this->sede->sed_nombre}(id::{$this->sede->sed_id})");
