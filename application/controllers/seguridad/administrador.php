@@ -16,6 +16,9 @@ class Administrador extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('seguridad/administrador_model', 'adm');
+        $this->load->model('seguridad/tipoadmin_model', 'ta');
+        $this->load->model('configuracion/sede_model', 'sede');
+        $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
     
     public function index(){
@@ -25,6 +28,45 @@ class Administrador extends CI_Controller{
         $objTipoAdmin = $this->adm->getTipoAdmin();
         $this->smartyci->assign('objTipoAdmin', $objTipoAdmin);
         $this->smartyci->show_page(NULL,  uniqid());
+    }
+    
+    public function nuevo($ta){
+        $action = $this->input->post('txt_action');
+        if($action){
+            $this->adm->getValsForm($this->input->post());
+            $this->adm->insert();
+            $this->writeLog("Registró el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
+            redirect('seguridad/administrador/index');
+        }else{
+            $this->ta->getTAById($ta);
+            $objSede = $this->sede->getAllSede();
+            $this->smartyci->assign('form', 1);
+            $this->smartyci->assign('ta_nombre', $this->ta->ta_nombre);
+            $this->smartyci->assign('ta', $this->ta->ta_id);
+            $this->smartyci->assign('sede', $objSede);
+            $this->smartyci->show_page(NULL, uniqid());
+        }
+    }
+    
+    public function changeEstado(){
+        $result = 0;
+        $id = $this->input->post('id');
+        $icon = $this->input->post('icon');
+        if($id>0){
+            $this->adm->getRow($id);
+            if($this->adm->adm_id > 0){
+                if($this->adm->adm_estado == 1){
+                    $this->adm->adm_estado = 0;
+                    $icon = 'fa-ban';
+                }else{
+                    $this->adm->adm_estado = 1;
+                    $icon = 'fa-check';
+                }
+                $this->adm->update();
+                $result = 1;
+            }
+        }
+        echo json_encode(array('respuesta'=>$result, 'icon'=>$icon));
     }
     
 }

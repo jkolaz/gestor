@@ -27,7 +27,7 @@ class Sede_model extends CI_Model{
         $where = array();
         $where['sed_estado'] = 1;
         
-        $query = $this->db->where($where)->get(self::$_table);
+        $query = $this->db->where($where)->order_by('sed_nombre')->get(self::$_table);
         
         if($query->num_rows > 0){
             return $query->result();

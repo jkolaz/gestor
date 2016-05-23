@@ -11,7 +11,7 @@
  *
  * @author julio
  */
-class tipoadmin_model extends CI_Model{
+class Tipoadmin_model extends CI_Model{
     //put your code here
     
     private static $_table;

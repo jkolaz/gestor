@@ -88,6 +88,9 @@
 </script>
 {/if}
 {if $form gt 0}
+<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/select2/select2.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/javascripts/forms/examples.advanced.form.js" /></script>
 {/if}
 {if $js_script neq ""}

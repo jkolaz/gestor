@@ -1,7 +1,4 @@
 <!-- start: page -->
-<div class="alert alert-info">
-    Resize the browser to see the responsiveness in action.
-</div>
 {if $objTipoAdmin|@count gt 1}
     {section name=tipo loop=$objTipoAdmin}
 <section class="panel">
@@ -13,6 +10,16 @@
         <h2 class="panel-title">{$objTipoAdmin[tipo]->ta_nombre}</h2>
     </header>
     <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-md nuevo_adm" id="nuevo" id_ta="{$objTipoAdmin[tipo]->ta_id}">
+                    <button id="addToTable" class="btn btn-primary">
+                        Registrar {$objTipoAdmin[tipo]->ta_nombre}
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
             <div class="table-responsive">
                     <table class="table table-bordered table-striped table-condensed mb-none">
                         <thead>
@@ -35,7 +42,11 @@
                                 <td>{$objTipoAdmin[tipo]->Administradores[adm]->adm_correo}</td>
                                 <td>{$objTipoAdmin[tipo]->Administradores[adm]->adm_nick}</td>
                                 <td>{$objTipoAdmin[tipo]->Administradores[adm]->sed_nombre}</td>
-                                <td>-</td>
+                                <td class="actions">
+                                    <a href="javascript:;" class="icono" id="lIcono_{$objTipoAdmin[tipo]->Administradores[adm]->adm_id}" icono="{$objTipoAdmin[tipo]->Administradores[adm]->icon_estado}" id_adm="{$objTipoAdmin[tipo]->Administradores[adm]->adm_id}">
+                                        <i class="fa {$objTipoAdmin[tipo]->Administradores[adm]->icon_estado}" id="icon_{$objTipoAdmin[tipo]->Administradores[adm]->adm_id}"></i>
+                                    </a>
+                                </td>
                                 <td>--</td>
                             </tr>
                             {/section}

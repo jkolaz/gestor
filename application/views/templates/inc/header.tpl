@@ -38,6 +38,10 @@
         <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/dropzone/css/dropzone.css" />
         <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/bootstrap-timepicker/css/bootstrap-timepicker.css" />    
         {/if}
+        {if $form gt 0}
+        <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+        <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/select2/select2.css" />
+        {/if}
 
         <!-- Theme CSS -->
         <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/stylesheets/theme.css" />
