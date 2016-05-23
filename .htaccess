@@ -1,0 +1,5 @@
+#Deny from all
+RewriteEngine on
+RewriteCond $1 !^(index\.php|images|php|script|styles|js|css|assets)
+#RewriteRule ^(.*)$ /proyecto1/index.php/$1 [L]
+RewriteRule ^(.*)$ /index.php/$1 [L]

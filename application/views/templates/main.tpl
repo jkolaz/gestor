@@ -29,12 +29,16 @@
                         <div class="right-wrapper pull-right">
                             <ol class="breadcrumbs">
                                 <li>
-                                    <a href="{$SERVER_ADMIN}seguridad/panel/principal.html">
+                                    <a href="{$SERVER_ADMIN}seguridad/principal/index.html">
                                         <i class="fa fa-home"></i>
                                     </a>
                                 </li>
                                 {if $details neq ""}
-                                <li><span>{$details}</span></li>
+                                <li>
+                                    <a href="{$SERVER_ADMIN}{$url_back}.html">
+                                        <span>{$details}</span>
+                                    </a>
+                                </li>
                                 {/if}
                                 {if $details1 neq ""}
                                 <li><span>{$details1}</span></li>

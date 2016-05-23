@@ -24,9 +24,7 @@ class tipoadmin_model extends CI_Model{
         self::$_table = 'gc_tipo_admin';        
     }
     
-    public function getAllTipoAdmin(){
-        $where = array();
-        $where['ta_estado'] = 1;
+    public function getAllTipoAdmin($where = array()){
         $query = $this->db->where($where)->order_by('ta_nombre')
                             ->get(self::$_table);
         if($query->num_rows > 0){
@@ -59,6 +57,7 @@ class tipoadmin_model extends CI_Model{
         }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
+            $this->ta_id = $this->db->insert_id();
             return TRUE;
         }
         return NULL;
@@ -69,7 +68,7 @@ class tipoadmin_model extends CI_Model{
         if($this->ta_nombre != ""){
             $update['ta_nombre'] = $this->ta_nombre;
         }
-        if($this->ta_estado != ""){
+        if($this->ta_estado >= 0){
             $update['ta_estado'] = $this->ta_estado;
         }
         if($this->ta_id > 0){

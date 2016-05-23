@@ -8,6 +8,16 @@
         <h2 class="panel-title">Tipo de Administradores</h2>
     </header>
     <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="mb-md" id="nuevo">
+                    <button id="addToTable" class="btn btn-primary">
+                        Registrar tipo de administrador
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
             <div class="table-responsive">
                     <table class="table mb-none">
                         <thead>
@@ -24,11 +34,15 @@
                             <tr class="active">
                                 <td>{$objTA[tipo]->ta_nombre}</td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}seguridad/permisos/index/{$objTA[tipo]->ta_id}.html" class="text-primary">
+                                    <a href="{$SERVER_ADMIN}seguridad/permiso/index/{$objTA[tipo]->ta_id}.html" class="text-primary">
                                         <i class="fa fa-key"></i> <span>Permisos</span>
                                     </a>
                                 </td>
-                                <td>{$objTA[tipo]->ta_estado}</td>
+                                <td class="actions">
+                                    <a href="javascript:;" class="icono" id="lIcono_{$objTA[tipo]->ta_id}" icono="{$objTA[tipo]->icon_estado}" id_ta="{$objTA[tipo]->ta_id}">
+                                        <i class="fa {$objTA[tipo]->icon_estado}" id="icon_{$objTA[tipo]->ta_id}"></i>
+                                    </a>
+                                </td>
                                 <td class="actions">
                                     <a href="{$SERVER_ADMIN}seguridad/tipoAdmin/editar/{$objTA[tipo]->ta_id}.html" title="Editar {$objTA[tipo]->ta_nombre}">
                                         <i class="fa fa-pencil"></i>

@@ -76,6 +76,7 @@ class Sedeseccion_model extends CI_Model{
         }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
+            $this->ss_id = $this->db->insert_id();
             return TRUE;
         }
         return NULL;

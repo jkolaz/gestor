@@ -30,7 +30,7 @@
                                     </a>
                                 </td>
                                 <td class="actions">
-                                    <a href="javascript:;" onclick="estado({$modulo[tipo]->mod_id}, '{$modulo[tipo]->icon_estado}')">
+                                    <a href="javascript:;" class="icono" id="lIcono_{$modulo[tipo]->mod_id}" icono="{$modulo[tipo]->icon_estado}" id_modulo="{$modulo[tipo]->mod_id}">
                                         <i class="fa {$modulo[tipo]->icon_estado}" id="icon_{$modulo[tipo]->mod_id}"></i>
                                     </a>
                                 </td>

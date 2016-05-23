@@ -36,7 +36,7 @@
                         <td>{$pagina[tipo]->pag_nombre}</td>
                         <td>{$SERVER_ADMIN}{$folder}{$pagina[tipo]->pag_url}.html</td>
                         <td class="actions">
-                            <a href="javascript:;" onclick="estado({$pagina[tipo]->pag_id}, '{$pagina[tipo]->icon_estado}')">
+                            <a href="javascript:;" class="icono" id="lIcono_{$pagina[tipo]->pag_id}" icono="{$pagina[tipo]->icon_estado}" id_pagina="{$pagina[tipo]->pag_id}">
                                 <i class="fa {$pagina[tipo]->icon_estado}" id="icon_{$pagina[tipo]->pag_id}"></i>
                             </a>
                         </td>

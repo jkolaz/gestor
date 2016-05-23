@@ -48,10 +48,12 @@ class Smartyci extends Smarty{
         $this->sufix = $config['url_suffix'];
         $this->assign("DIR_PRINCIPAL", SERVER_NAME);
         $this->assign("SERVER_ADMIN", SERVER_NAME);
+        $this->assign("URL_PANEL", URL_PANEL);
         $this->assign("pg_title", $this->pg_title);
         $this->assign("listado", $this->listado);
         $this->assign("datatable", $this->datatable);
         $this->assign("details", $this->details);
+        $this->assign("url_back", URL_PANEL);
         $this->assign("details1", $this->details1);
         $this->assign("fileupload", $this->fileupload);
         $this->assign("wizard", $this->wizard);

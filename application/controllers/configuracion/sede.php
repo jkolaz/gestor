@@ -20,6 +20,8 @@ class Sede extends CI_Controller{
         $this->load->model('configuracion/sede_model', 'sede');
         $this->load->model('configuracion/seccion_model', 'seccion');
         $this->smartyci->assign('listado', 'Sedes');
+        $this->smartyci->assign('details', 'Sedes'); 
+        $this->smartyci->assign('url_back', $this->_carpeta.'/'.$this->_class.'/index');
         $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
     
@@ -65,9 +67,9 @@ class Sede extends CI_Controller{
     }
     
     public function agregarSeccion(){
-        $sede = $_POST['sede'];
-        $seccion = $_POST['seccion'];
-        $estado = $_POST['estado'];
+        $sede = $this->input->post('sede');
+        $seccion = $this->input->post('seccion');
+        $estado = $this->input->post('estado');
         $this->sede->getSedeById($sede);
         $this->seccion->getSeccionById($seccion);
         $respuesta = 0;

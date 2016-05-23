@@ -4,7 +4,7 @@
 
 # Files
 application/views/templates_c/*.php
-.htaccess
+#.htaccess
 
 /cache/
 /application/cache/

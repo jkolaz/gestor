@@ -15,7 +15,7 @@
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
                     <li>
-                        <a href="{$SERVER_ADMIN}seguridad/panel/principal.html">
+                        <a href="{$SERVER_ADMIN}seguridad/principal/index.html">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             <span>Panel</span>
                         </a>

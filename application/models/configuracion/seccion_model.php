@@ -23,7 +23,8 @@ class Seccion_model extends CI_Controller{
         $this->load->database();
     }
     
-    public function getAllSeccion($where = array()){
+    public function getAllSeccion($where = array()){ 
+        $this->db->where('sec_estado <=', 1);
         if(count($where)>0){
             $this->db->where($where);
         }
@@ -60,6 +61,7 @@ class Seccion_model extends CI_Controller{
         }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
+            $this->sec_id = $this->db->insert_id();
             return TRUE;
         }
         return NULL;
