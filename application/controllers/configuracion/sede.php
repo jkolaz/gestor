@@ -30,6 +30,15 @@ class Sede extends CI_Controller{
             redirect(URL_PANEL);
         }
         $objSede = $this->sede->getAllSede();
+        if($objSede){
+            foreach ($objSede as $id=>$value){
+                $icon_estado = 'fa-ban';
+                if($value->sed_estado == 1){
+                    $icon_estado = 'fa-check';
+                }
+                $objSede[$id]->icon_estado = $icon_estado;
+            }
+        }
         $this->smartyci->assign('objSede', $objSede);
         $this->smartyci->show_page(NULL,  uniqid());
     }
@@ -97,8 +106,9 @@ class Sede extends CI_Controller{
     }
     
     public function nuevo(){
-        if(isset($_POST['txt_action']) && $_POST['txt_action'] == 'nuevo'){
-            $this->sede->getValsForm($_POST);
+        $action = $this->input->post('txt_action');
+        if(isset($action) && $action == 'nuevo'){
+            $this->sede->getValsForm($this->input->post());
             $this->sede->insert();
             $this->writeLog("Registro la sede {$this->sede->sed_nombre}(id::{$this->sede->sed_id})");
             redirect('configuracion/sede/index');
@@ -106,5 +116,26 @@ class Sede extends CI_Controller{
             $this->smartyci->assign('sede', $this->sede);
             $this->smartyci->show_page(NULL,  uniqid());
         }
+    }
+    
+    public function changeEstado(){
+        $result = 0;
+        $id = $this->input->post('id');
+        $icon = $this->input->post('icon');
+        if($id>0){
+            $this->sede->getSedeById($id);
+            if($this->sede->sed_id > 0){
+                if($this->sede->sed_estado == 1){
+                    $this->sede->sed_estado = 0;
+                    $icon = 'fa-ban';
+                }else{
+                    $this->sede->sed_estado = 1;
+                    $icon = 'fa-check';
+                }
+                $this->sede->update();
+                $result = 1;
+            }
+        }
+        echo json_encode(array('respuesta'=>$result, 'icon'=>$icon));
     }
 }

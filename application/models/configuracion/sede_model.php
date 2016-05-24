@@ -25,7 +25,7 @@ class Sede_model extends CI_Model{
     
     public function getAllSede(){
         $where = array();
-        $where['sed_estado'] = 1;
+        $where['sed_estado <='] = 1;
         
         $query = $this->db->where($where)->order_by('sed_nombre')->get(self::$_table);
         
@@ -68,7 +68,7 @@ class Sede_model extends CI_Model{
         if($this->sed_nombre != ""){
             $update['sed_nombre'] = $this->sed_nombre;
         }
-        if($this->sed_estado != ""){
+        if($this->sed_estado >= 0){
             $update['sed_estado'] = $this->sed_estado;
         }
         if($this->sed_id > 0){

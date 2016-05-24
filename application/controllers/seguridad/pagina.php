@@ -23,23 +23,27 @@ class Pagina extends CI_Controller{
     
     public function index($modulo){
         $this->modulo->getRow($modulo);
-        $where['pag_mod_id'] = $this->modulo->mod_id;
-        $objPagina = $this->pagina->getAll($where);
-        if($objPagina){
-            foreach ($objPagina as $id=>$value){
-                $icon_estado = 'fa-ban';
-                if($value->pag_estado == 1){
-                    $icon_estado = 'fa-check';
+        if($this->modulo->men_id > 0){
+            $where['pag_mod_id'] = $this->modulo->mod_id;
+            $objPagina = $this->pagina->getAll($where);
+            if($objPagina){
+                foreach ($objPagina as $id=>$value){
+                    $icon_estado = 'fa-ban';
+                    if($value->pag_estado == 1){
+                        $icon_estado = 'fa-check';
+                    }
+                    $objPagina[$id]->icon_estado = $icon_estado;
                 }
-                $objPagina[$id]->icon_estado = $icon_estado;
             }
+
+            $this->smartyci->assign('modulo_id', $this->modulo->mod_id);
+            $this->smartyci->assign('modulo', $this->modulo->mod_nombre);
+            $this->smartyci->assign('folder', $this->modulo->mod_url.'/');
+            $this->smartyci->assign('pagina', $objPagina);
+            $this->smartyci->show_page(NULL, uniqid());
+        }else{
+            redirect('seguridad/modulo/index');
         }
-        
-        $this->smartyci->assign('modulo_id', $this->modulo->mod_id);
-        $this->smartyci->assign('modulo', $this->modulo->mod_nombre);
-        $this->smartyci->assign('folder', $this->modulo->mod_url.'/');
-        $this->smartyci->assign('pagina', $objPagina);
-        $this->smartyci->show_page(NULL, uniqid());
     }
     
     public function changeEstado(){

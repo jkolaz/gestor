@@ -5,59 +5,66 @@
 <section class="panel">
     <header class="panel-heading">
 
-        <h2 class="panel-title">Sede</h2>
+        <h2 class="panel-title">Menú - {$detalle_menu}</h2>
     </header>
     <div class="panel-body">
+        {if $rol eq $idTA}
         <div class="row">
             <div class="col-sm-6">
-                <div class="mb-md" id="nuevo">
+                <div class="mb-md" id="nuevo" padre="{$padre}">
                     <button id="addToTable" class="btn btn-primary">
-                        Registrar nueva sede
+                        Registrar nuevo menú
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
             </div>
         </div>
+        {/if}
             <div class="table-responsive">
                     <table class="table mb-none">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Secciones web</th>
-                                <th>Menú web</th>
+                                {if $padre eq 0}
+                                <th>Sub menús</th>
+                                {else}
+                                <th>Url</th>
+                                {/if}
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {if $objSede|@count gt 0}
-                            {section name=tipo loop=$objSede}
+                        {if $objmenu|@count gt 0}
+                            {section name=tipo loop=$objmenu}
                             <tr class="active">
-                                <td>{$objSede[tipo]->sed_nombre}</td>
+                                <td>{$objmenu[tipo]->men_nombre}</td>
+                                {if $padre eq 0}
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/sede/seccionWeb/{$objSede[tipo]->sed_id}.html" title="Editar {$objSede[tipo]->sed_nombre}">
-                                        <i class="fa fa-key"></i>
-                                        <span>Secciones web</span>
+                                    <a href="{$SERVER_ADMIN}configuracion/menu/submenu/{$objmenu[tipo]->men_id}.html" title="Editar {$objmenu[tipo]->men_nombre}">
+                                        <i class="fa fa-book"></i>
+                                        <span>Sub menus</span>
+                                    </a>
+                                </td>
+                                {else}
+                                <td>
+                                    <i class="fa fa-chain"></i> <span>{$objmenu[tipo]->men_ruta}</span>
+                                </td>
+                                {/if}
+                                <td class="actions">
+                                    <a href="javascript:;" class="icono" id="lIcono_{$objmenu[tipo]->men_id}" icono="{$objmenu[tipo]->icon_estado}" id_menu="{$objmenu[tipo]->men_id}">
+                                        <i class="fa {$objmenu[tipo]->icon_estado}" id="icon_{$objmenu[tipo]->men_id}"></i>
                                     </a>
                                 </td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/menuweb/index/{$objSede[tipo]->sed_id}.html" title="Editar menú web - {$objSede[tipo]->sed_nombre}">
-                                        <i class="fa fa-tags"></i>
-                                        <span>Menú perminitidos</span>
-                                    </a>
-                                </td>
-                                <td class="actions">
-                                    <a href="javascript:;" class="icono" id="lIcono_{$objSede[tipo]->sed_id}" icono="{$objSede[tipo]->icon_estado}" id_sede="{$objSede[tipo]->sed_id}">
-                                        <i class="fa {$objSede[tipo]->icon_estado}" id="icon_{$objSede[tipo]->sed_id}"></i>
-                                    </a>
-                                </td>
-                                <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/sede/editar/{$objSede[tipo]->sed_id}.html" title="Editar {$objSede[tipo]->sed_nombre}">
+                                    <a href="{$SERVER_ADMIN}configuracion/sede/editar/{$objmenu[tipo]->men_id}.html" title="Editar {$objmenu[tipo]->men_nombre}">
                                         <i class="fa fa-pencil"></i>
                                     </a>&nbsp;&nbsp;&nbsp;
-                                    <a class="delete-row" href="javascript:;" onclick="eliminar({$objSede[tipo]->sed_id})" title="Eliminar {$objSede[tipo]->sed_nombre}">
+                                    {if $rol eq $idTA}
+                                    <a class="delete-row" href="javascript:;" onclick="eliminar({$objmenu[tipo]->men_id})" title="Eliminar {$objmenu[tipo]->men_nombre}">
                                         <i class="fa fa-trash-o"></i>
                                     </a>
+                                    {/if}
                                 </td>
                             </tr>
                             {/section}

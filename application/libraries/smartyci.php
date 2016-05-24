@@ -94,7 +94,8 @@ class Smartyci extends Smarty{
             
             $this->assign("sufix", $this->sufix);
             if($this->maintpl == "main"){
-                
+                $this->assign('rol', $this->ci->session->userdata('idRol'));
+                $this->assign('idTA', ID_TA);
                 $this->include_template("head", "inc/header", $cache_id);
                 $this->include_template("footer", "inc/footer", $cache_id);
                 //$this->include_template("menu", "inc/menu", $cache_id);

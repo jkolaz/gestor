@@ -2,6 +2,7 @@ var controlador = 'configuracion/sede/';
 jQuery(document).ready( function() {
     seccion_web();
     nuevo();
+    estado();
 });
 
 function eliminar(id){
@@ -38,6 +39,27 @@ function seccion_web(){
                     //$("#moalidatxt_" + cid).html(json.img_modalidad);
                 } else{
                     alert("No se pudo cambiar7.");
+                }
+            }
+        });
+    });
+}
+
+function estado(){
+    $('.icono').click(function(){
+        var icon = $(this).attr('icono');
+        var id = $(this).attr('id_sede');
+        $.ajax({
+            type: "POST",
+            cache: false,
+            dataType: "json",
+            data:{id:id, icon:icon},
+            url: base_url+controlador+'changeEstado.html',
+            success: function(json){
+                if (json.respuesta === 1){
+                    $('#icon_'+id).removeClass(icon);
+                    $('#icon_'+id).addClass(json.icon);
+                    $('#lIcono_'+id).attr('icono',json.icon)
                 }
             }
         });
