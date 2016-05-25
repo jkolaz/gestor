@@ -23,7 +23,7 @@ class Pagina extends CI_Controller{
     
     public function index($modulo){
         $this->modulo->getRow($modulo);
-        if($this->modulo->men_id > 0){
+        if($this->modulo->mod_id > 0){
             $where['pag_mod_id'] = $this->modulo->mod_id;
             $objPagina = $this->pagina->getAll($where);
             if($objPagina){

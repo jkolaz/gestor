@@ -30,7 +30,10 @@ class Menuweb extends CI_Controller{
                     $objMenu[$id]->men_submenu = $objSubMenu;
                 }
             }
-            imprimir($objMenu);exit;
+//            imprimir($objMenu);exit;
+            $this->smartyci->assign("listado", 'Menú - '.$this->sede->sed_nombre);
+            $this->smartyci->assign("form", 1);
+            $this->smartyci->assign('objMenu', $objMenu);
             $this->smartyci->assign('nombre', $this->sede->sed_nombre);
             $this->smartyci->show_page(NULL, uniqid());
         }else{

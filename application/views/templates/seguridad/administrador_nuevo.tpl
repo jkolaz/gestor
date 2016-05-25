@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nombre <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="txt_adm_nombre" id="txt_adm_nombre" class="form-control" placeholder="ej.: Jean Marco" required value=""/>
+                            <input type="text" name="txt_adm_nombre" id="txt_adm_nombre" class="form-control" required value=""/>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Apellidos <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="txt_adm_apellidos" id="txt_adm_apellidos" class="form-control" placeholder="ej.: Olivares gúzman" required autocomplete="off" value=""/>
+                            <input type="text" name="txt_adm_apellidos" id="txt_adm_apellidos" class="form-control" required autocomplete="off" value=""/>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Correo <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="txt_adm_correo" id="txt_adm_correo" class="form-control email" placeholder="ej.: example@example.com" required autocomplete="off" value=""/>
+                            <input type="text" name="txt_adm_correo" id="txt_adm_correo" class="form-control email" required autocomplete="off" value=""/>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nick <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="txt_adm_nick" id="txt_adm_nick" class="form-control email" placeholder="ej.: jeanmarco" required autocomplete="off" value=""/>
+                            <input type="text" name="txt_adm_nick" id="txt_adm_nick" class="form-control email" required autocomplete="off" value=""/>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Contraseña <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="password" name="txt_adm_password" id="txt_adm_password" class="form-control email" placeholder="*******" required autocomplete="off" value=""/>
+                            <input type="password" name="txt_adm_password" id="txt_adm_password" class="form-control email" required autocomplete="off" value=""/>
                         </div>
                     </div>
                 </div>
