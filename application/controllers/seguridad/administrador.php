@@ -31,20 +31,24 @@ class Administrador extends CI_Controller{
     }
     
     public function nuevo($ta){
-        $action = $this->input->post('txt_action');
-        if($action){
-            $this->adm->getValsForm($this->input->post());
-            $this->adm->insert();
-            $this->writeLog("Registró el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
-            redirect('seguridad/administrador/index');
+        $this->ta->getTAById($ta);
+        if($this->ta->ta_id > 0){
+            $action = $this->input->post('txt_action');
+            if($action){
+                $this->adm->getValsForm($this->input->post());
+                $this->adm->insert();
+                $this->writeLog("Registró el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
+                redirect('seguridad/administrador/index');
+            }else{
+                $objSede = $this->sede->getAllSede();
+                $this->smartyci->assign('form', 1);
+                $this->smartyci->assign('ta_nombre', $this->ta->ta_nombre);
+                $this->smartyci->assign('ta', $this->ta->ta_id);
+                $this->smartyci->assign('sede', $objSede);
+                $this->smartyci->show_page(NULL, uniqid());
+            }
         }else{
-            $this->ta->getTAById($ta);
-            $objSede = $this->sede->getAllSede();
-            $this->smartyci->assign('form', 1);
-            $this->smartyci->assign('ta_nombre', $this->ta->ta_nombre);
-            $this->smartyci->assign('ta', $this->ta->ta_id);
-            $this->smartyci->assign('sede', $objSede);
-            $this->smartyci->show_page(NULL, uniqid());
+            redirect($this->_carpeta.'/'.$this->_class.'/index');
         }
     }
     

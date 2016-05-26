@@ -47,11 +47,17 @@
                     </div>
                     <div class="panel-body">
                         <form action="{$SERVER_ADMIN}seguridad/seguridad/ingresar_sistema.html" method="post">
-                            {if $error gt 0}
+                            {if $error eq 1}
                             <div class="alert alert-danger">
                                 <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                Algo va mal
+                                Algo va mal. 
                                 <strong>Usuario y/o contraseña</strong> incorrecto, intente nuevamente.
+                            </div>
+                            {/if}
+                            {if $error eq 2}
+                            <div class="alert alert-warning">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                Ingrese su <strong>Usuario y/o contraseña</strong> para poder acceder al sistema.
                             </div>
                             {/if}
                             <div class="form-group mb-lg">

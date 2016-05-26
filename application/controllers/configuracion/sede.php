@@ -65,14 +65,18 @@ class Sede extends CI_Controller{
     }
     
     public function seccionWeb($id){
-        $this->smartyci->assign("form", 1);
         $this->sede->getSedeById($id);
-        $where['sec_estado'] = 1;
-        $objSeccion = $this->seccion->getAllSeccion($where);
-        $this->smartyci->assign('id', $this->sede->sed_id);
-        $this->smartyci->assign('nombre', $this->sede->sed_nombre);
-        $this->smartyci->assign('objSeccion', $objSeccion);
-        $this->smartyci->show_page(NULL, uniqid());
+        if($this->sede->sed_id > 0){
+            $this->smartyci->assign("form", 1);
+            $where['sec_estado'] = 1;
+            $objSeccion = $this->seccion->getAllSeccion($where);
+            $this->smartyci->assign('id', $this->sede->sed_id);
+            $this->smartyci->assign('nombre', $this->sede->sed_nombre);
+            $this->smartyci->assign('objSeccion', $objSeccion);
+            $this->smartyci->show_page(NULL, uniqid());
+        }else{
+            redirect('configuracion/sede/index');
+        }
     }
     
     public function agregarSeccion(){

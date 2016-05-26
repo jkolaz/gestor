@@ -64,7 +64,7 @@ class CI_Controller {
                     $this->_rol = $this->session->userdata('idRol');
                 }
 		log_message('debug', "Controller Class Initialized");
-                //$this->verificar();
+                $this->verificar();
 	}
 
 	public static function &get_instance()
@@ -73,30 +73,25 @@ class CI_Controller {
 	}
                 
         public function verificar(){
-            $session  = $this->session->userdata;
-            $controlador = $this->router->fetch_class();
-            $method = $this->router->fetch_method();
-            switch($controlador){
-                case "index":
-                    break;
-                case "seguridad":
-                    switch ($method){
-                        case "recordarClave":
-                            break;
-                        default :
-                            if(isset($session['user']) && $session['user'] > 0){
+            $id = $this->session->userdata('user');
+            if($this->_carpeta == ''){
+                switch ($this->_class){
+                    case 'index':
+                        if($id>0){
+                            redirect('seguridad/principal/index');
+                        }
+                        break;
+                }
+            }else{
+                if($this->_carpeta == 'seguridad' && $this->_class == 'seguridad' && $this->_method == 'ingresar_sistema'){
                     
-                            }else{
-                                redirect();
-                            }
-                    }
-                    break;
-                default:
-                    if(isset($session['user']) && $session['user'] > 0){
-                    
+                }else{
+                    if($id>0){
+
                     }else{
-                        redirect();
+                        redirect('index/index/2');
                     }
+                }
             }
         }
         
