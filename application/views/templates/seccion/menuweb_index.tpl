@@ -11,6 +11,7 @@
     </header>
     <div class="panel-body">
             <div class="table-responsive">
+                    <input type="hidden" name="txt_sed_id" id="txt_sed_id" value="{$id}" />
                     <table class="table mb-none">
                         <thead>
                             <tr>
@@ -24,10 +25,10 @@
                             {section name=adm loop=$objMenu[tipo]->men_submenu}
                             <tr>
                                 <td>{$objMenu[tipo]->men_submenu[adm]->men_nombre}</td>
-                                <td>{$objMenu[tipo]->men_submenu[adm]->men_ruta}</td>
+                                <td>http://www.sanjuandedios.com/<b style="color:#0088cc">{$objMenu[tipo]->men_submenu[adm]->men_ruta}</b>.html</td>
                                 <td class="actions">
-                                    <div class="switch switch-sm switch-primary seccion_web" id_seccion="{$objMenu[tipo]->men_submenu[adm]->men_id}">
-                                        <input type="checkbox" name="txt_men_id[]" id="txt_men_id_{$objMenu[tipo]->men_submenu[adm]->men_id}" data-plugin-ios-switch value="{$objMenu[tipo]->men_submenu[adm]->men_id}"/>
+                                    <div class="switch switch-sm switch-primary menu_web" id_menu="{$objMenu[tipo]->men_submenu[adm]->men_id}">
+                                        <input type="checkbox" name="txt_men_id[]" id="txt_men_id_{$objMenu[tipo]->men_submenu[adm]->men_id}" data-plugin-ios-switch value="{$objMenu[tipo]->men_submenu[adm]->men_id}" {$objMenu[tipo]->men_submenu[adm]->checked} />
                                     </div>
                                 </td>
                             </tr>

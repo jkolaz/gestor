@@ -36,6 +36,7 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('URL_PANEL',		'seguridad/principal/index');
+define('URL_NO_PERMISO',        'seguridad/seguridad/nopermiso');
 define('URL_NO_LOGIN',		'index/index/1');
 define('URL_LOGOUT',		'seguridad/seguridad/logout');
 define('PREFIJO',		'gc_');
@@ -56,8 +57,6 @@ if(IS_PRODUCTION){
 }
 define("PATH_LIBRARY", PATH_ADMIN . "application/libraries/");
 define("PATH_GALLERY", PATH_ADMIN . "img/upload/");
-define("PATH_PDF", PATH_ADMIN . "PDF/");
-define("SERVER_PDF", SERVER_NAME . "PDF/");
 
 define("ID_TA", 1);
 /* End of file constants.php */

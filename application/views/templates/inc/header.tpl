@@ -41,6 +41,9 @@
         {if $form gt 0}
         <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
         <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/select2/select2.css" />
+        <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/summernote/summernote.css" />
+        <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/summernote/summernote-bs3.css" />
+        <link rel="stylesheet" href="{$DIR_PRINCIPAL}assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.css" />
         {/if}
 
         <!-- Theme CSS -->

@@ -31,6 +31,7 @@
 <script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/magnific-popup/magnific-popup.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/pnotify/pnotify.custom.js"></script>
 
 {if $datatable gt 0}
 <!-- Specific Page Vendor -->
@@ -40,7 +41,14 @@
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-datatables-bs3/assets/js/datatables.js"></script>
 {/if}
 {if $form gt 0}
-    <script src="{$DIR_PRINCIPAL}assets/vendor/ios7-switch/ios7-switch.js"></script>
+
+<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/select2/select2.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/summernote/summernote.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/ios7-switch/ios7-switch.js"></script>
+<script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 {/if}
 {if $fileupload gt 0}
 <!-- Specific Page Vendor -->
@@ -87,10 +95,8 @@
     });*/
 </script>
 {/if}
+<script src="{$DIR_PRINCIPAL}assets/javascripts/ui-elements/examples.modals.js"></script>
 {if $form gt 0}
-<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui/js/jquery-ui-1.10.4.custom.js"></script>
-<script src="{$DIR_PRINCIPAL}assets/vendor/jquery-ui-touch-punch/jquery.ui.touch-punch.js"></script>
-<script src="{$DIR_PRINCIPAL}assets/vendor/select2/select2.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/javascripts/forms/examples.advanced.form.js" /></script>
 {/if}
 {if $js_script neq ""}

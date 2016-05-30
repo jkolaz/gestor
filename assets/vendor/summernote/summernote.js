@@ -3412,7 +3412,12 @@
       $editable.html(dom.html($holder) || dom.emptyPara);
 
       //031. create codable
-      $('<textarea class="note-codable"></textarea>').prependTo($editor);
+      var $id = '';
+      if(options.id_textarea){
+          $id = 'id="'+options.id_textarea+'" name="'+options.id_textarea+'"';
+      }
+      
+      $('<textarea '+$id+' class="note-codable"></textarea>').prependTo($editor);
 
       var langInfo = $.summernote.lang[options.lang];
 

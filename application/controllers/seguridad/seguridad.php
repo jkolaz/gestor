@@ -40,6 +40,8 @@ class Seguridad extends CI_Controller{
                 $arreglo['correo'] = $objAdm[0]->adm_correo;
                 $arreglo['idRol'] = $objAdm[0]->ta_id;
                 $arreglo['rol'] = $objAdm[0]->ta_nombre;
+                $arreglo['rol'] = $objAdm[0]->ta_nombre;
+                $arreglo['sede'] = $objAdm[0]->adm_sed_id;
                 $this->session->set_userdata($arreglo);
                 if($permitir == TRUE){
                     redirect(URL_PANEL);
@@ -69,5 +71,10 @@ class Seguridad extends CI_Controller{
         $arreglo['rol'] = '';
         $this->session->unset_userdata($arreglo);
         redirect();
+    }
+    
+    public function nopermiso(){
+        $this->smartyci->assign('listado', 'Seguridad');
+        $this->smartyci->show_page();
     }
 }

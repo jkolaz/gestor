@@ -25,6 +25,7 @@
                                 <th>Nombre</th>
                                 <th>Secciones web</th>
                                 <th>Menú web</th>
+                                <th>Especialidades</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -41,9 +42,15 @@
                                     </a>
                                 </td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/menuweb/index/{$objSede[tipo]->sed_id}.html" title="Editar menú web - {$objSede[tipo]->sed_nombre}">
+                                    <a href="{$SERVER_ADMIN}seccion/menuweb/index/{$objSede[tipo]->sed_id}.html" title="Editar menú web - {$objSede[tipo]->sed_nombre}">
                                         <i class="fa fa-tags"></i>
                                         <span>Menú perminitidos</span>
+                                    </a>
+                                </td>
+                                <td class="actions">
+                                    <a href="{$SERVER_ADMIN}seccion/sedeEspecialidad/permiso/{$objSede[tipo]->sed_id}.html" title="Administrar especialidades - {$objSede[tipo]->sed_nombre}">
+                                        <i class="fa fa-stethoscope"></i>
+                                        <span>Especialidades</span>
                                     </a>
                                 </td>
                                 <td class="actions">

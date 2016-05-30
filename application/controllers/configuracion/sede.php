@@ -27,7 +27,7 @@ class Sede extends CI_Controller{
     
     public function index(){
         if($this->_rol != 1){
-            redirect(URL_PANEL);
+            redirect(URL_NO_PERMISO);
         }
         $objSede = $this->sede->getAllSede();
         if($objSede){

@@ -96,7 +96,7 @@ class Menuweb_model extends CI_Model{
         if($this->mw_sed_id != ""){
             $update['mw_sed_id'] = $this->mw_sed_id;
         }
-        if($this->ss_id > 0){
+        if($this->mw_id > 0){
             if(count($update)>0){
                 $this->db->where(self::$_PK,  $this->mw_id)->update(self::$_table, $update);
                 return TRUE;
