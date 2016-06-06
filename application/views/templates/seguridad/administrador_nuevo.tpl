@@ -4,8 +4,8 @@
             <input name="txt_action" id="txt_action" type="hidden" value="nuevo">
             <input name="txt_adm_ta_id" id="txt_adm_ta_id" type="hidden" value="{$ta}">
             <section class="panel">
+                {$message}
                 <header class="panel-heading">
-
                     <h2 class="panel-title">Nuevo Administrador <b>({$ta_nombre})</b></h2>
                 </header>
                 <div class="panel-body">

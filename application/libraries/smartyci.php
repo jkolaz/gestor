@@ -142,8 +142,35 @@ class Smartyci extends Smarty{
     function login($cache_id){
         $usuario = $this->ci->session->userdata;
 //        imprimir($usuario);exit;
+        $this->message();
         $this->assign('logout', URL_LOGOUT);
         $this->assign('usuario', $usuario);
         $this->include_template("panel_cuenta", "inc/cuenta", $cache_id);
+    }
+    
+    function message(){
+        /*
+         * $id
+         * 1: OK
+         * 2: ERROR
+         * 3: WARMING
+         */
+        $message_id = $usuario = $this->ci->session->userdata('message_id');
+        $message = $usuario = $this->ci->session->userdata('message');
+        $msg = '';
+        if($message != ''){
+            $aMessage = array(
+                "MSG1" => "Los datos se guardaron correctamente.",
+                "ERR1" => "Los datos no se guardaron.",
+                "WRM1" => "El nombre del registro ya existe.",
+                "WRM2" => "El nombre de usuario ya existe."
+            );
+            $msg = $aMessage[$message];
+        }
+        $this->assign('permitido_message', $message_id);
+        $this->assign('message', $msg);
+        $this->ci->session->set_userdata('message_id', 0);
+        $this->ci->session->set_userdata('message', '');
+        $this->include_template("message", "inc/message");
     }
 }

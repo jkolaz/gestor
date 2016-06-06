@@ -209,4 +209,13 @@ class Administrador_model extends CI_Model{
         }
         return NULL;
     }
+    
+    public function getCountAll($where = array()){
+        if(count($where) > 0){
+            $this->db->where($where);
+        }
+        
+        $query = $this->db->from(self::$_table)->count_all_results();
+        return $query;
+    }
 }

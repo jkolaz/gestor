@@ -2,6 +2,7 @@
 {if $objTipoAdmin|@count gt 1}
     {section name=tipo loop=$objTipoAdmin}
 <section class="panel">
+    {$message}
     <header class="panel-heading">
         <div class="panel-actions">
             <a href="#" class="fa fa-caret-down"></a>

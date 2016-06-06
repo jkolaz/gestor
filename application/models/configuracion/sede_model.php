@@ -18,6 +18,7 @@ class Sede_model extends CI_Model{
     public $sed_id;
     public $sed_nombre;
     public $sed_estado;
+    public $sed_reg_id;
     public function __construct() {
         parent::__construct(); 
         $this->load->database();
@@ -43,6 +44,7 @@ class Sede_model extends CI_Model{
             $this->sed_id = $arreglo[0]->sed_id;
             $this->sed_nombre = $arreglo[0]->sed_nombre;
             $this->sed_estado = $arreglo[0]->sed_estado;
+            $this->sed_reg_id = $arreglo[0]->sed_reg_id;
         }
     }
     
@@ -50,11 +52,20 @@ class Sede_model extends CI_Model{
         if(isset($post['txt_sed_nombre'])){
             $this->sed_nombre = $post['txt_sed_nombre'];
         }
+        if(isset($post['txt_sed_reg_id'])){
+            $this->sed_reg_id = $post['txt_sed_reg_id'];
+        }
     }
     public function insert(){
         $insert = array();
         if($this->sed_nombre != ""){
             $insert['sed_nombre'] = $this->sed_nombre;
+        }
+        if($this->sed_reg_id >= 0){
+            $insert['sed_reg_id'] = $this->sed_reg_id;
+        }
+        if($this->sed_reg_id >= 0){
+            $insert['sed_reg_id'] = $this->sed_reg_id;
         }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
@@ -71,6 +82,9 @@ class Sede_model extends CI_Model{
         if($this->sed_estado >= 0){
             $update['sed_estado'] = $this->sed_estado;
         }
+        if($this->sed_reg_id >= 0){
+            $update['sed_reg_id'] = $this->sed_reg_id;
+        }
         if($this->sed_id > 0){
             if(count($update)>0){
                 $this->db->where(self::$_PK,  $this->sed_id)->update(self::$_table, $update);
@@ -79,5 +93,14 @@ class Sede_model extends CI_Model{
             return NULL;
         }
         return NULL;
+    }
+    
+    public function getCountAll($where = array()){
+        if(count($where) > 0){
+            $this->db->where($where);
+        }
+        
+        $query = $this->db->from(self::$_table)->count_all_results();
+        return $query;
     }
 }

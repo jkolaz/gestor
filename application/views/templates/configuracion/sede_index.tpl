@@ -3,8 +3,8 @@
     Resize the browser to see the responsiveness in action.
 </div>-->
 <section class="panel">
+    {$message}
     <header class="panel-heading">
-
         <h2 class="panel-title">Sede</h2>
     </header>
     <div class="panel-body">

@@ -3,8 +3,8 @@
         <form id="form" action="{$SERVER_ADMIN}configuracion/especialidad/nuevo" method="post" class="form-horizontal" enctype="multipart/form-data">
             <input name="txt_action" id="txt_action" type="hidden" value="nuevo">
             <section class="panel">
+                {$message}
                 <header class="panel-heading">
-
                     <h2 class="panel-title">Registro de Especialidad</h2>
                 </header>
                 <div class="panel-body">

@@ -3,8 +3,8 @@
         <form id="form" action="{$SERVER_ADMIN}configuracion/sede/editar/{$ID}" method="post" class="form-horizontal">
             <input name="txt_action" id="txt_action" type="hidden" value="editar">
             <section class="panel">
+                {$message}
                 <header class="panel-heading">
-
                     <h2 class="panel-title">Editar sede</h2>
                 </header>
                 <div class="panel-body">
@@ -12,6 +12,31 @@
                         <label class="col-sm-3 control-label">Nombre <span class="required">*</span></label>
                         <div class="col-sm-9">
                             <input type="text" name="txt_sed_nombre" id="txt_sed_nombre" class="form-control" placeholder="ej.: Lima" required value="{$sede->sed_nombre}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Sede <span class="required">*</span></label>
+                        <div class="col-sm-5">
+                            <select data-plugin-selectTwo id="txt_sed_reg_id" name="txt_sed_reg_id" class="form-control populate" required>
+                                <option value="">Seleccionar región</option>
+                                <optgroup label="Región">
+                                    {if $objRegion|@count gt 0}
+                                        {section name=id loop=$objRegion}
+                                    <option value="{$objRegion[id]->reg_id}" {$objRegion[id]->selected}>{$objRegion[id]->reg_nombre}</option>
+                                        {/section}
+                                    {/if}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Central Telefónica <span class="required">*</span></label>
+                        <div class="col-sm-5">
+                            <input type="text" id="txt_st_num" name="txt_st_num" class="form-control populate" required="" value="{if isset($sedeTelefono[0]->st_num)}{$sedeTelefono[0]->st_num}{/if}"/>
                         </div>
                     </div>
                 </div>

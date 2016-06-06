@@ -36,9 +36,22 @@ class Administrador extends CI_Controller{
             $action = $this->input->post('txt_action');
             if($action){
                 $this->adm->getValsForm($this->input->post());
-                $this->adm->insert();
-                $this->writeLog("Registró el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
-                redirect('seguridad/administrador/index');
+                $where['adm_nick'] = $this->adm->adm_nick;
+                if($this->adm->getCountAll($where) > 0){
+                    $this->session->set_userdata('message_id', 3);
+                    $this->session->set_userdata('message', 'WRM2');
+                    redirect('seguridad/administrador/nuevo/'.$ta);
+                }
+                if($this->adm->insert()){
+                    $this->writeLog("Registró el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
+                    $this->session->set_userdata('message_id', 1);
+                    $this->session->set_userdata('message', 'MSG1');
+                    redirect('seguridad/administrador/index');
+                }else{
+                    $this->session->set_userdata('message_id', 2);
+                    $this->session->set_userdata('message', 'ERR1');
+                    redirect('seguridad/administrador/nuevo/'.$ta);
+                }
             }else{
                 $objSede = $this->sede->getAllSede();
                 $this->smartyci->assign('form', 1);
