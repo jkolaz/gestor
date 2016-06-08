@@ -56,7 +56,7 @@ if(IS_PRODUCTION){
     define("PATH_ADMIN", SERVER_PATH );
 }
 define("PATH_LIBRARY", PATH_ADMIN . "application/libraries/");
-define("PATH_GALLERY", PATH_ADMIN . "img/upload/");
+define("PATH_GALLERY", PATH_ADMIN . "assets/images/upload/");
 
 define("ID_TA", 1);
 /* End of file constants.php */

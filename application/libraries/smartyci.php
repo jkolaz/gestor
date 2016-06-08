@@ -161,7 +161,10 @@ class Smartyci extends Smarty{
         if($message != ''){
             $aMessage = array(
                 "MSG1" => "Los datos se guardaron correctamente.",
-                "ERR1" => "Los datos no se guardaron.",
+                "ERR1" => "Los datos no se guardaron correctamente.",
+                "ERR2" => "No se encuentra lo solicitado.",
+                "ERR3" => "El tipo de archivo no es aceptado.",
+                "ERR4" => "Ocurrio un error al subir el archivo.",
                 "WRM1" => "El nombre del registro ya existe.",
                 "WRM2" => "El nombre de usuario ya existe."
             );

@@ -10,3 +10,5 @@ application/views/templates_c/*.php
 /application/cache/
 /application/logs/web/
 /application/logs/
+/img/
+/assets/images/upload/
