@@ -21,6 +21,7 @@ class Banner_model extends CI_Model{
     public $ban_tb_id;
     public $ban_estado;
     public $ban_sed_id;
+    public $ban_view;
     
     public function __construct() {
         parent::__construct();
@@ -53,6 +54,9 @@ class Banner_model extends CI_Model{
         if(isset($post['txt_ban_sed_id'])){
             $this->ban_sed_id = $post['txt_ban_sed_id'];
         }
+        if(isset($post['txt_ban_view'])){
+            $this->ban_view = $post['txt_ban_view'];
+        }
     }
     public function insert(){
         $insert = array();
@@ -70,6 +74,9 @@ class Banner_model extends CI_Model{
         }
         if($this->ban_sed_id >= 0 && $this->ban_sed_id != ""){
             $insert['ban_sed_id'] = $this->ban_sed_id;
+        }
+        if($this->ban_view >= 0 && $this->ban_view != ""){
+            $insert['ban_view'] = $this->ban_view;
         }
         
         if(count($insert)>0){
@@ -92,6 +99,7 @@ class Banner_model extends CI_Model{
             $this->ban_tb_id = $arreglo[0]->ban_tb_id;
             $this->ban_estado = $arreglo[0]->ban_estado;
             $this->ban_sed_id = $arreglo[0]->ban_sed_id;
+            $this->ban_view = $arreglo[0]->ban_view;
         }
     }
     
@@ -111,6 +119,9 @@ class Banner_model extends CI_Model{
         }
         if($this->ban_sed_id >= 0 || $this->ban_sed_id != ""){
             $update['ban_sed_id'] = $this->ban_sed_id;
+        }
+        if($this->ban_view >= 0 || $this->ban_view != ""){
+            $update['ban_view'] = $this->ban_view;
         }
         
         if($this->ban_id > 0){

@@ -22,7 +22,8 @@
                     <table class="table mb-none">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
+                                <th>URL</th>
+                                <th>Imagen</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -31,6 +32,7 @@
                         {if $objBanner|@count gt 0}
                             {section name=tipo loop=$objBanner}
                             <tr class="active">
+                                <td>{$objBanner[tipo]->ban_url}</td>
                                 <td>{$objBanner[tipo]->ban_img}</td>
                                 <td class="actions">
                                     <a href="javascript:;" class="icono" id="lIcono_{$objBanner[tipo]->ban_id}" icono="{$objBanner[tipo]->icon_estado}" id_banner="{$objBanner[tipo]->ban_id}">

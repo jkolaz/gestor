@@ -62,38 +62,40 @@ class Banner extends CI_Controller{
         if($this->tipo_banner->tb_id > 0){
             $action = $this->input->post('txt_action');
             if(isset($action) && $action == 'nuevo'){
-                if ((($_FILES["txt_ban_img"]["type"] == "image/png")
-                    || ($_FILES["txt_ban_img"]["type"] == "image/jpeg")
-                    || ($_FILES["txt_ban_img"]["type"] == "image/jpg"))) {
-                        if(!is_array($_FILES["txt_ban_img"]["name"])){
-                            $extension = pathinfo($_FILES["txt_ban_img"]["name"]);
-                            $destination = uniqid('banner_').'.'.$extension['extension'];
-                            if(move_uploaded_file($_FILES['txt_ban_img']['tmp_name'], PATH_GALLERY.$destination)){
-                                $sede = $this->session->userdata('sede');
-                                $this->banner->getValsForm($this->input->post());
-                                $this->banner->ban_img = $destination;
-                                $this->banner->ban_tb_id = $tb;
-                                $this->banner->ban_sed_id = $sede;
-                                if($this->banner->insert()){
-                                    $this->session->set_userdata('message_id', 1);
-                                    $this->session->set_userdata('message', 'MSG1');
-                                    $this->writeLog("Registro banner {$this->banner->ban_img} (id::{$this->banner->ban_id})");
-                                    redirect('seccion/banner/listar/'.$tb);
-                                }else{
-                                    $this->session->set_userdata('message_id', 2);
-                                    $this->session->set_userdata('message', 'ERR1');
-                                    redirect('seccion/banner/nuevo/'.$tb);
+                $sede = $this->session->userdata('sede');
+                $this->banner->getValsForm($this->input->post());
+                $this->banner->ban_tb_id = $tb;
+                $this->banner->ban_sed_id = $sede;
+                if(isset($_FILES["txt_ban_img"]["name"]) && $_FILES["txt_ban_img"]["name"] != ""){
+                    if ((($_FILES["txt_ban_img"]["type"] == "image/png")
+                        || ($_FILES["txt_ban_img"]["type"] == "image/jpeg")
+                        || ($_FILES["txt_ban_img"]["type"] == "image/jpg"))) {
+                            if(!is_array($_FILES["txt_ban_img"]["name"])){
+                                $extension = pathinfo($_FILES["txt_ban_img"]["name"]);
+                                $destination = uniqid('banner_').'.'.$extension['extension'];
+                                if(move_uploaded_file($_FILES['txt_ban_img']['tmp_name'], PATH_GALLERY.$destination)){
+                                    $this->banner->ban_img = $destination;
                                 }
+                            }else{
+                                $this->session->set_userdata('message_id', 2);
+                                $this->session->set_userdata('message', 'ERR4');
                             }
-                        }else{
-                            $this->session->set_userdata('message_id', 2);
-                            $this->session->set_userdata('message', 'ERR4');
-                        }
                     }else{
                         $this->session->set_userdata('message_id', 3);
                         $this->session->set_userdata('message', 'ERR3');
                         redirect('seccion/banner/nuevo/'.$tb);
                     }
+                }
+                if($this->banner->insert()){
+                    $this->session->set_userdata('message_id', 1);
+                    $this->session->set_userdata('message', 'MSG1');
+                    $this->writeLog("Registro banner {$this->banner->ban_img} (id::{$this->banner->ban_id})");
+                    redirect('seccion/banner/listar/'.$tb);
+                }else{
+                    $this->session->set_userdata('message_id', 2);
+                    $this->session->set_userdata('message', 'ERR1');
+                    redirect('seccion/banner/nuevo/'.$tb);
+                }
             }else{
                 $this->smartyci->assign('form', 1);
                 $this->smartyci->assign('tipo_id', $this->tipo_banner->tb_id);

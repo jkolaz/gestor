@@ -17,7 +17,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Imagen<b>(.jpeg, .jpg, .gif, .png)</b> <span class="required">*</span></label>
+                        <label class="col-sm-3 control-label">Tipo <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <div class="radio-custom">
+                                <input type="radio" name="txt_ban_view" id="txt_ban_view_1" class="form-control" required value="1" checked=""/>
+                                <label for="txt_ban_view_1">Imagen</label>
+                            </div>
+                            <div class="radio-custom">
+                                <input type="radio" name="txt_ban_view" id="txt_ban_view_0" class="form-control" required value="1"/>
+                                <label for="txt_ban_view_0">Youtube</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Imagen<b>(.jpeg, .jpg, .gif, .png)</b></label>
                         <div class="col-sm-9">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="input-append">
@@ -28,7 +41,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-exists">Cambiar</span>
                                         <span class="fileupload-new">Seleccionar Archivo</span>
-                                        <input type="file" name="txt_ban_img" id="txt_ban_img" required/>
+                                        <input type="file" name="txt_ban_img" id="txt_ban_img" />
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
                                 </div>
