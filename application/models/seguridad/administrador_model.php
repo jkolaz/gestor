@@ -41,6 +41,7 @@ class Administrador_model extends CI_Model{
         
         $query = $this->db->where($where)
                 ->join(self::$_table1, 'adm_ta_id=ta_id')
+                ->join('gc_sede', 'adm_sed_id=sed_id', 'left')
                 ->get(self::$_table);
         
         if($query->num_rows > 0){

@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'My_PHPMailer', 'Smartyci');
+$autoload['libraries'] = array('database', 'session', 'My_PHPMailer', 'Smartyci', 'myutilities');
 
 
 /*

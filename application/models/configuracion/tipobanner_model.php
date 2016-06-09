@@ -18,6 +18,8 @@ class Tipobanner_model extends CI_Model{
     public $tb_id;
     public $tb_nombre;
     public $tb_estado;
+    public $tb_ancho;
+    public $tb_alto;
     
     public function __construct() {
         parent::__construct();
@@ -64,6 +66,8 @@ class Tipobanner_model extends CI_Model{
             $this->tb_id = $arreglo[0]->tb_id;
             $this->tb_nombre = $arreglo[0]->tb_nombre;
             $this->tb_estado = $arreglo[0]->tb_estado;
+            $this->tb_ancho = $arreglo[0]->tb_ancho;
+            $this->tb_alto = $arreglo[0]->tb_alto;
         }
     }
     

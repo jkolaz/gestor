@@ -141,10 +141,19 @@ class Smartyci extends Smarty{
     
     function login($cache_id){
         $usuario = $this->ci->session->userdata;
-//        imprimir($usuario);exit;
+        $tipo_adm = '';
+        $sede_nombre = '';
+        if($usuario['sede'] > 0){
+            $sede_nombre = ' - '.$usuario['sede_nombre'];
+        }
+        if($usuario['rol'] != ""){
+            $tipo_adm = $usuario['rol'];
+        }
         $this->message();
         $this->assign('logout', URL_LOGOUT);
         $this->assign('usuario', $usuario);
+        $this->assign('tipo_adm', $tipo_adm);
+        $this->assign('sede', $sede_nombre);
         $this->include_template("panel_cuenta", "inc/cuenta", $cache_id);
     }
     

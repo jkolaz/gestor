@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nombre <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <input type="text" name="txt_sed_nombre" id="txt_sed_nombre" class="form-control" placeholder="ej.: Lima" required value="{$sede->sed_nombre}"/>
+                            <input type="text" name="txt_sed_nombre" id="txt_sed_nombre" class="form-control" placeholder="ej.: Lima" required value=""/>
                         </div>
                     </div>
                 </div>

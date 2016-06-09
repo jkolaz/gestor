@@ -11,7 +11,7 @@
                 </figure>
                 <div class="profile-info" data-lock-name="{$usuario.usuario}" data-lock-email="{$usuario.correo}">
                     <span class="name">{$usuario.usuario}</span>
-                    <span class="role">Administrador</span>
+                    <span class="role">{$tipo_adm}{$sede}</span>
                 </div>
 
                 <i class="fa custom-caret"></i>

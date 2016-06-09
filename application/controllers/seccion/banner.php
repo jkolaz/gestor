@@ -32,7 +32,7 @@ class Banner extends CI_Controller{
         if($this->tipo_banner->tb_id > 0){
             $sede = $this->session->userdata('sede');
             $where['ban_tb_id'] = $this->tipo_banner->tb_id;
-            $where['ban_sed_id'] = $sede;
+            $where['ban_sed_id'] = 0;
             $obj = $this->banner->getall($where);
             if($obj){
                 foreach ($obj as $id=>$value){
@@ -65,7 +65,7 @@ class Banner extends CI_Controller{
                 $sede = $this->session->userdata('sede');
                 $this->banner->getValsForm($this->input->post());
                 $this->banner->ban_tb_id = $tb;
-                $this->banner->ban_sed_id = $sede;
+                $this->banner->ban_sed_id = 0;
                 if(isset($_FILES["txt_ban_img"]["name"]) && $_FILES["txt_ban_img"]["name"] != ""){
                     if ((($_FILES["txt_ban_img"]["type"] == "image/png")
                         || ($_FILES["txt_ban_img"]["type"] == "image/jpeg")
@@ -137,7 +137,37 @@ class Banner extends CI_Controller{
         if($this->banner->ban_id > 0){
             $action = $this->input->post('txt_action');
             if(isset($action) && $action == 'editar'){
-                
+                $this->banner->getValsForm($this->input->post());
+                if(isset($_FILES["txt_ban_img"]["name"]) && $_FILES["txt_ban_img"]["name"] != ""){
+                    if ((($_FILES["txt_ban_img"]["type"] == "image/png")
+                        || ($_FILES["txt_ban_img"]["type"] == "image/jpeg")
+                        || ($_FILES["txt_ban_img"]["type"] == "image/jpg"))) {
+                            if(!is_array($_FILES["txt_ban_img"]["name"])){
+                                $extension = pathinfo($_FILES["txt_ban_img"]["name"]);
+                                $destination = uniqid('banner_').'.'.$extension['extension'];
+                                if(move_uploaded_file($_FILES['txt_ban_img']['tmp_name'], PATH_GALLERY.$destination)){
+                                    $this->banner->ban_img = $destination;
+                                }
+                            }else{
+                                $this->session->set_userdata('message_id', 2);
+                                $this->session->set_userdata('message', 'ERR4');
+                            }
+                    }else{
+                        $this->session->set_userdata('message_id', 3);
+                        $this->session->set_userdata('message', 'ERR3');
+                        redirect('seccion/banner/editar/'.$id);
+                    }
+                }
+                if($this->banner->update()){
+                    $this->session->set_userdata('message_id', 1);
+                    $this->session->set_userdata('message', 'MSG1');
+                    $this->writeLog("Editó banner {$this->banner->ban_img} (id::{$this->banner->ban_id})");
+                    redirect('seccion/banner/listar/'.$this->banner->ban_tb_id);
+                }else{
+                    $this->session->set_userdata('message_id', 2);
+                    $this->session->set_userdata('message', 'ERR1');
+                    redirect('seccion/banner/editar/'.$id);
+                }
             }else{
                 $this->smartyci->assign('form', 1);
                 $this->tipo_banner->getRow($this->banner->ban_tb_id);

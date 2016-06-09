@@ -19,6 +19,7 @@ class Sede_model extends CI_Model{
     public $sed_nombre;
     public $sed_estado;
     public $sed_reg_id;
+    public $sed_url;
     public function __construct() {
         parent::__construct(); 
         $this->load->database();
@@ -45,6 +46,7 @@ class Sede_model extends CI_Model{
             $this->sed_nombre = $arreglo[0]->sed_nombre;
             $this->sed_estado = $arreglo[0]->sed_estado;
             $this->sed_reg_id = $arreglo[0]->sed_reg_id;
+            $this->sed_url = $arreglo[0]->sed_url;
         }
     }
     
@@ -60,6 +62,7 @@ class Sede_model extends CI_Model{
         $insert = array();
         if($this->sed_nombre != ""){
             $insert['sed_nombre'] = $this->sed_nombre;
+            $insert['sed_url'] = quitarAcentos($this->sed_nombre);
         }
         if($this->sed_reg_id >= 0){
             $insert['sed_reg_id'] = $this->sed_reg_id;
@@ -78,6 +81,7 @@ class Sede_model extends CI_Model{
         $update = array();
         if($this->sed_nombre != ""){
             $update['sed_nombre'] = $this->sed_nombre;
+            $update['sed_url'] = quitarAcentos($this->sed_nombre);
         }
         if($this->sed_estado >= 0){
             $update['sed_estado'] = $this->sed_estado;
