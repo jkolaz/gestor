@@ -106,7 +106,7 @@ class Administrador_model extends CI_Model{
             $this->adm_nombre = $arreglo[0]->adm_nombre;
             $this->adm_apellidos = $arreglo[0]->adm_apellidos;
             $this->adm_correo = $arreglo[0]->adm_correo;
-            $this->adm_nick = $arreglo[0]->adm_correo;
+            $this->adm_nick = $arreglo[0]->adm_nick;
             $this->adm_estado = $arreglo[0]->adm_estado;
             $this->adm_ta_id = $arreglo[0]->adm_ta_id;
             $this->adm_sed_id = $arreglo[0]->adm_sed_id;

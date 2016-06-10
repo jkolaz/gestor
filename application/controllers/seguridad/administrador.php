@@ -86,4 +86,50 @@ class Administrador extends CI_Controller{
         echo json_encode(array('respuesta'=>$result, 'icon'=>$icon));
     }
     
+    public function editar($id = 0){
+        $rol = $this->session->userdata('idRol');
+        if($rol == 1){
+            $this->adm->getRow($id);
+            if($this->adm->adm_id > 0){
+                $action = $this->input->post('txt_action');
+                if(isset($action) && $action == "editar"){
+                    $this->adm->getValsForm($this->input->post());
+                    if($this->adm->update()){
+                        $this->writeLog("Editó el administrador {$this->adm->adm_nombre}(id::{$this->adm->adm_id})");
+                        $this->session->set_userdata('message_id', 1);
+                        $this->session->set_userdata('message', 'MSG1');
+                        redirect('seguridad/administrador/index');
+                    }else{
+                        $this->session->set_userdata('message_id', 2);
+                        $this->session->set_userdata('message', 'ERR1');
+                        redirect('seguridad/administrador/editar/'.$id);
+                    }
+                }else{
+                    $objSede = $this->sede->getAllSede();
+                    if($objSede){
+                        foreach($objSede as $id=>$value){
+                            $selected = '';
+                            if($value->sed_id == $this->adm->adm_sed_id){
+                                $selected = 'selected="selected"';
+                            }
+                            $objSede[$id]->selected = $selected;
+                        }
+                    }
+                    $this->smartyci->assign('objSede', $objSede);
+                    $this->smartyci->assign('stdAdm', $this->adm);
+                    $this->smartyci->assign('listado', 'Editar Administrador');
+                    $this->smartyci->assign('details', 'Administradores');
+                    $this->smartyci->assign('url_back', 'seguridad/administrador/index');
+                    $this->smartyci->show_page(NULL, uniqid());
+                }
+            }else{
+                $this->session->set_userdata('message_id', 2);
+                $this->session->set_userdata('message', 'ERR2');
+                redirect('seguridad/administrador/index');
+            }
+        }else{
+            redirect(URL_NO_PERMISO);
+        }
+    }
+    
 }

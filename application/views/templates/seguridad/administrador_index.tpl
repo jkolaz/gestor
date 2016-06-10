@@ -48,7 +48,15 @@
                                         <i class="fa {$objTipoAdmin[tipo]->Administradores[adm]->icon_estado}" id="icon_{$objTipoAdmin[tipo]->Administradores[adm]->adm_id}"></i>
                                     </a>
                                 </td>
-                                <td>--</td>
+                                <td class="actions">
+                                    {if $rol eq 1}
+                                    <a href="{$SERVER_ADMIN}seguridad/administrador/editar/{$objTipoAdmin[tipo]->Administradores[adm]->adm_id}.html">
+                                        <i class="fa fa-pencil"></i>&nbsp;&nbsp;Editar
+                                    </a>
+                                    {else}
+                                    --{$rol}
+                                    {/if}
+                                </td>
                             </tr>
                             {/section}
                         {else}
