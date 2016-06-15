@@ -87,6 +87,7 @@ class Sede extends CI_Controller{
                 $this->smartyci->assign('stdSede', $this->sede);
                 $this->smartyci->assign('sedeTelefono', $obST);
                 $this->smartyci->assign('ID', $id);
+                $this->smartyci->assign('form', 1);
                 $this->smartyci->show_page(NULL,  uniqid());
             }
         }else{
@@ -174,6 +175,7 @@ class Sede extends CI_Controller{
             $objRegion = $this->region->getAll();
             $this->smartyci->assign('objRegion', $objRegion);
             $this->smartyci->assign('sede', $this->sede);
+            $this->smartyci->assign('form', 1);
             $this->smartyci->show_page(NULL,  uniqid());
         }
     }

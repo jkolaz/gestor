@@ -20,6 +20,11 @@ class Sede_model extends CI_Model{
     public $sed_estado;
     public $sed_reg_id;
     public $sed_url;
+    public $sed_consulta_lv;
+    public $sed_consulta_s;
+    public $sed_farmacia_lv;
+    public $sed_farmacia_s;
+    public $sed_visita;
     public function __construct() {
         parent::__construct(); 
         $this->load->database();
@@ -47,6 +52,11 @@ class Sede_model extends CI_Model{
             $this->sed_estado = $arreglo[0]->sed_estado;
             $this->sed_reg_id = $arreglo[0]->sed_reg_id;
             $this->sed_url = $arreglo[0]->sed_url;
+            $this->sed_consulta_lv = $arreglo[0]->sed_consulta_lv;
+            $this->sed_consulta_s = $arreglo[0]->sed_consulta_s;
+            $this->sed_farmacia_lv = $arreglo[0]->sed_farmacia_lv;
+            $this->sed_farmacia_s = $arreglo[0]->sed_farmacia_s;
+            $this->sed_visita = $arreglo[0]->sed_visita;
         }
     }
     
@@ -57,12 +67,42 @@ class Sede_model extends CI_Model{
         if(isset($post['txt_sed_reg_id'])){
             $this->sed_reg_id = $post['txt_sed_reg_id'];
         }
+        if(isset($post['txt_sed_consulta_lv'])){
+            $this->sed_consulta_lv = $post['txt_sed_consulta_lv'];
+        }
+        if(isset($post['txt_sed_consulta_s'])){
+            $this->sed_consulta_s = $post['txt_sed_consulta_s'];
+        }
+        if(isset($post['txt_sed_farmacia_lv'])){
+            $this->sed_farmacia_lv = $post['txt_sed_farmacia_lv'];
+        }
+        if(isset($post['txt_sed_farmacia_s'])){
+            $this->sed_farmacia_s = $post['txt_sed_farmacia_s'];
+        }
+        if(isset($post['txt_sed_visita'])){
+            $this->sed_visita = $post['txt_sed_visita'];
+        }
     }
     public function insert(){
         $insert = array();
         if($this->sed_nombre != ""){
             $insert['sed_nombre'] = $this->sed_nombre;
             $insert['sed_url'] = quitarAcentos($this->sed_nombre);
+        }
+        if($this->sed_consulta_lv != ""){
+            $insert['sed_consulta_lv'] = $this->sed_consulta_lv;
+        }
+        if($this->sed_consulta_s != ""){
+            $insert['sed_consulta_s'] = $this->sed_consulta_s;
+        }
+        if($this->sed_farmacia_lv != ""){
+            $insert['sed_farmacia_lv'] = $this->sed_farmacia_lv;
+        }
+        if($this->sed_farmacia_s != ""){
+            $insert['sed_farmacia_s'] = $this->sed_farmacia_s;
+        }
+        if($this->sed_visita != ""){
+            $insert['sed_visita'] = $this->sed_visita;
         }
         if($this->sed_reg_id >= 0){
             $insert['sed_reg_id'] = $this->sed_reg_id;
@@ -82,6 +122,21 @@ class Sede_model extends CI_Model{
         if($this->sed_nombre != ""){
             $update['sed_nombre'] = $this->sed_nombre;
             $update['sed_url'] = quitarAcentos($this->sed_nombre);
+        }
+        if($this->sed_consulta_lv != ""){
+            $update['sed_consulta_lv'] = $this->sed_consulta_lv;
+        }
+        if($this->sed_consulta_s != ""){
+            $update['sed_consulta_s'] = $this->sed_consulta_s;
+        }
+        if($this->sed_farmacia_lv != ""){
+            $update['sed_farmacia_lv'] = $this->sed_farmacia_lv;
+        }
+        if($this->sed_farmacia_s != ""){
+            $update['sed_farmacia_s'] = $this->sed_farmacia_s;
+        }
+        if($this->sed_visita != ""){
+            $update['sed_visita'] = $this->sed_visita;
         }
         if($this->sed_estado >= 0){
             $update['sed_estado'] = $this->sed_estado;

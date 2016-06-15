@@ -17,6 +17,51 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Visita Hospitalización <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="txt_sed_visita" id="txt_sed_visita" maxlength="250" data-plugin-maxlength="" required rows="3">{$stdSede->sed_visita}</textarea>
+                            <p><code>Máximo</code> 250.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Consulta Externa <b>(Lunes - Viernes)</b> <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="txt_sed_consulta_lv" id="txt_sed_consulta_lv" maxlength="50" data-plugin-maxlength="" required rows="2">{$stdSede->sed_consulta_lv}</textarea>
+                            <p><code>Máximo</code> 50.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Consulta Externa <b>(Sábados)</b> <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="txt_sed_consulta_s" id="txt_sed_consulta_s" maxlength="50" data-plugin-maxlength="" required rows="2">{$stdSede->sed_consulta_s}</textarea>
+                            <p><code>Máximo</code> 50.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Farmacia <b>(Lunes - Viernes)</b> <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="txt_sed_farmacia_lv" id="txt_sed_farmacia_lv" maxlength="50" data-plugin-maxlength="" required rows="2">{$stdSede->sed_farmacia_lv}</textarea>
+                            <p><code>Máximo</code> 50.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Farmacia <b>(Sábados)</b> <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="txt_sed_farmacia_s" id="txt_sed_farmacia_s" maxlength="50" data-plugin-maxlength="" required rows="2">{$stdSede->sed_farmacia_s}</textarea>
+                            <p><code>Máximo</code> 50.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Sede <span class="required">*</span></label>
                         <div class="col-sm-5">
                             <select data-plugin-selectTwo id="txt_sed_reg_id" name="txt_sed_reg_id" class="form-control populate" required>
