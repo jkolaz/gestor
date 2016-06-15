@@ -33,7 +33,11 @@
                             {section name=tipo loop=$objBanner}
                             <tr class="active">
                                 <td>{$objBanner[tipo]->ban_url}</td>
-                                <td>{$objBanner[tipo]->ban_img}</td>
+                                <td>
+                                    <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objBanner[tipo]->ban_img}">
+                                        <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$objBanner[tipo]->ban_img}">
+                                    </a>
+                                </td>
                                 <td class="actions">
                                     <a href="javascript:;" class="icono" id="lIcono_{$objBanner[tipo]->ban_id}" icono="{$objBanner[tipo]->icon_estado}" id_banner="{$objBanner[tipo]->ban_id}">
                                         <i class="fa {$objBanner[tipo]->icon_estado}" id="icon_{$objBanner[tipo]->ban_id}"></i>

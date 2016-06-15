@@ -31,10 +31,11 @@
 <script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/magnific-popup/magnific-popup.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>
+
+<!-- Specific Page Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/pnotify/pnotify.custom.js"></script>
 
 {if $datatable gt 0}
-<!-- Specific Page Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/select2/select2.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-datatables/media/js/jquery.dataTables.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js"></script>
@@ -51,12 +52,10 @@
 <script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 {/if}
 {if $fileupload gt 0}
-<!-- Specific Page Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-autosize/jquery.autosize.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js"></script>
 {/if}
 {if $wizard gt 0}
-<!-- Specific Page Vendor -->
 <script src="{$DIR_PRINCIPAL}assets/vendor/jquery-validation/jquery.validate.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js"></script>
 <script src="{$DIR_PRINCIPAL}assets/vendor/pnotify/pnotify.custom.js"></script>

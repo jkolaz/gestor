@@ -57,6 +57,7 @@ if(IS_PRODUCTION){
 }
 define("PATH_LIBRARY", PATH_ADMIN . "application/libraries/");
 define("PATH_GALLERY", PATH_ADMIN . "assets/images/upload/");
+define("SERVER_GALLERY", SERVER_NAME . "assets/images/upload/");
 
 define("ID_TA", 1);
 /* End of file constants.php */
