@@ -59,9 +59,18 @@ class Novedad extends CI_Controller{
                 $this->novedad->nov_sed_id = $this->sede->sed_id;
                 $this->novedad->nov_estado = 0;
                 $this->novedad->nov_destacada = 0;
-                $destination = 'novedad_'.$_FILES['txt_nov_imagen']['name'];
-                if(move_uploaded_file($_FILES['txt_nov_imagen']['tmp_name'], PATH_GALLERY.$destination)){
-                    $this->novedad->nov_imagen = $destination;
+                if(isset($_FILES["txt_nov_imagen"]["name"]) && $_FILES["txt_nov_imagen"]["name"] != ""){
+                    if ((($_FILES["txt_nov_imagen"]["type"] == "image/png")
+                        || ($_FILES["txt_nov_imagen"]["type"] == "image/jpeg")
+                        || ($_FILES["txt_nov_imagen"]["type"] == "image/jpg"))) {
+                            if(!is_array($_FILES["txt_nov_imagen"]["name"])){
+                                $extension = pathinfo($_FILES["txt_nov_imagen"]["name"]);
+                                $destination = uniqid('novedad_').'.'.$extension['extension'];
+                                if(move_uploaded_file($_FILES['txt_nov_imagen']['tmp_name'], PATH_GALLERY.$destination)){
+                                    $this->novedad->nov_imagen = $destination;
+                                }
+                            }
+                        }
                 }
                 if($this->novedad->insert()){
                     $this->writeLog("Registro novedad (id::{$this->novedad->nov_id})");
@@ -89,6 +98,25 @@ class Novedad extends CI_Controller{
                 $action = $this->input->post('txt_action');
                 if(isset($action) && $action == 'editar'){
                     $this->novedad->getValsForm($this->input->post());
+                    if(isset($_FILES["txt_nov_imagen"]["name"]) && $_FILES["txt_nov_imagen"]["name"] != ""){
+                        if ((($_FILES["txt_nov_imagen"]["type"] == "image/png")
+                        || ($_FILES["txt_nov_imagen"]["type"] == "image/jpeg")
+                        || ($_FILES["txt_nov_imagen"]["type"] == "image/jpg"))) {
+                            if(!is_array($_FILES["txt_nov_imagen"]["name"])){
+                                $extension = pathinfo($_FILES["txt_nov_imagen"]["name"]);
+                                $destination = uniqid('novedad_').'.'.$extension['extension'];
+                                if(move_uploaded_file($_FILES['txt_nov_imagen']['tmp_name'], PATH_GALLERY.$destination)){
+                                    $this->novedad->nov_imagen = $destination;
+                                }
+                            }else{
+                                $this->session->set_userdata('message_id', 2);
+                                $this->session->set_userdata('message', 'ERR4');
+                            }
+                        }else{
+                            $this->session->set_userdata('message_id', 3);
+                            $this->session->set_userdata('message', 'ERR3');
+                        }
+                    }
                     $this->novedad->update();
                     $this->writeLog("Editó novedad (id::{$this->novedad->nov_id})");
                     redirect('seccion/novedad/index');

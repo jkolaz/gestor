@@ -44,8 +44,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Imagen <span class="required">*</span></label>
-                        <!--<div class="col-sm-9">
+                        <label class="col-sm-3 control-label">Imagen</label>
+                        <div class="col-sm-1">
+                            <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$stdNovedad->nov_imagen}">
+                                <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$stdNovedad->nov_imagen}">
+                            </a>
+                        </div>
+                        <div class="col-sm-5">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="input-append">
                                     <div class="uneditable-input">
@@ -55,12 +60,12 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-exists">Cambiar</span>
                                         <span class="fileupload-new">Seleccionar Archivo</span>
-                                        <input type="file" name="txt_nov_imagen" id="txt_nov_imagen" value="" required/>
+                                        <input type="file" name="txt_nov_imagen" id="txt_nov_imagen"/>
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
                     </div>
                 </div>
                 <footer class="panel-footer">
