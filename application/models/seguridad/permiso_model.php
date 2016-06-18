@@ -30,7 +30,7 @@ class Permiso_model extends CI_Model{
         self::$_PK = 'per_id';
     }
     
-    public function getPermisosByUser($id){
+    public function getPermisosByUser($id, $sede=0){
         $aResult = NULL;
         $sql = "select 
                     gc_pagina.pag_id,
@@ -68,7 +68,7 @@ class Permiso_model extends CI_Model{
             if(count($aModulo)>0){
                 $aModulo = array_unique($aModulo);
                 $sModulo = implode(', ', $aModulo);
-                $objModulo = $this->getModulo($sModulo);
+                $objModulo = $this->getModulo($sModulo, $sede);
                 if($objModulo){
                     foreach ($objModulo as $id=>$valor){
                         foreach ($result as $val){
@@ -89,16 +89,17 @@ class Permiso_model extends CI_Model{
         return $aResult;
     }
     
-    public function getModulo($ids){
+    public function getModulo($ids, $sede = 0){
         $sql = "select 
                     mod_id,
                     mod_nombre,
                     mod_url,
-                    mod_icon
+                    mod_icon,
+                    mod_is_need_sede
                 from
                     gc_modulo
                 where
-                    mod_id in ({$ids})";
+                    mod_id in ({$ids}) and mod_is_need_sede = {$sede}";
         $query = $this->db->query($sql);
         if ($query->num_rows > 0){
             return $query->result();

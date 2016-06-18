@@ -135,8 +135,14 @@ class Smartyci extends Smarty{
     }
     function menu($cache_id){
         $adm = $this->ci->session->userdata('user');
+        $sede = $this->ci->session->userdata('sede');
         $objPermiso = $this->ci->permiso_model->getPermisosByUser($adm);
+        $objPermisoSede = array();
+        if($sede > 0){
+            $objPermisoSede = $this->ci->permiso_model->getPermisosByUser($adm, $sede);
+        }
         $this->assign('menu', $objPermiso);
+        $this->assign('menu_sede', $objPermisoSede);
         $this->include_template("menu", "inc/menu", $cache_id);
     }
     

@@ -42,6 +42,28 @@
                     </li>        
                         {/section}
                     {/if}
+                    {if $menu_sede|@count gt 0}
+                        {section name=id_sede loop=$menu_sede}
+                    <li class="nav-parent">
+                        <a>
+                            <i class="fa {$menu_sede[id_sede]->mod_icon}" aria-hidden="true"></i>
+                            <span>{$menu_sede[id_sede]->mod_nombre}</span>
+                        </a>
+                        {if $menu_sede[id_sede]->mod_paginas|@count gt 0}
+                        <ul class="nav nav-children">
+                            {section name=sub_menu loop=$menu_sede[id_sede]->mod_paginas}
+                            <li>
+                                <a href="{$SERVER_ADMIN}{$menu_sede[id_sede]->mod_url}/{$menu_sede[id_sede]->mod_paginas[sub_menu]->pag_url}.html">
+                                    <i class="fa {$menu_sede[id_sede]->mod_paginas[sub_menu]->pag_icon}" aria-hidden="true"></i>
+                                    <span>{$menu_sede[id_sede]->mod_paginas[sub_menu]->pag_nombre}</span>
+                                </a>
+                            </li>
+                            {/section}
+                        </ul>
+                        {/if}
+                    </li>        
+                        {/section}
+                    {/if}
                 </ul>
             </nav>
 				
