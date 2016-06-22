@@ -22,6 +22,7 @@ class Servicio_model extends CI_Model{
     public $ser_imagen;
     public $ser_estado;
     public $ser_sed_id;
+    public $ser_listado;
     
     public function __construct() {
         parent::__construct();
@@ -54,6 +55,9 @@ class Servicio_model extends CI_Model{
         if(isset($post['txt_ser_sed_id'])){
             $this->ser_sed_id = $post['txt_ser_sed_id'];
         }
+        if(isset($post['txt_ser_listado'])){
+            $this->ser_listado = $post['txt_ser_listado'];
+        }
     }
     public function insert(){
         $insert = array();
@@ -68,6 +72,9 @@ class Servicio_model extends CI_Model{
         }
         if($this->ser_imagen != ""){
             $insert['ser_imagen'] = $this->ser_imagen;
+        }
+        if($this->ser_listado != ""){
+            $insert['ser_listado'] = $this->ser_listado;
         }
         if($this->ser_estado >= 0 && $this->ser_estado != ""){
             $insert['ser_estado'] = $this->ser_estado;
@@ -95,6 +102,7 @@ class Servicio_model extends CI_Model{
             $this->ser_url = $arreglo[0]->ser_url;
             $this->ser_descripcion = $arreglo[0]->ser_descripcion;
             $this->ser_imagen = $arreglo[0]->ser_imagen;
+            $this->ser_listado = $arreglo[0]->ser_listado;
             $this->ser_estado = $arreglo[0]->ser_estado;
             $this->ser_sed_id = $arreglo[0]->ser_sed_id;
         }
@@ -110,6 +118,9 @@ class Servicio_model extends CI_Model{
         }
         if($this->ser_descripcion != ""){
             $update['ser_descripcion'] = $this->ser_descripcion;
+        }
+        if($this->ser_listado != ""){
+            $update['ser_listado'] = $this->ser_listado;
         }
         if($this->ser_imagen != ""){
             $update['ser_imagen'] = $this->ser_imagen;

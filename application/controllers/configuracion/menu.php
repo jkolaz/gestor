@@ -43,9 +43,10 @@ class Menu extends CI_Controller{
         if(isset($action) && $action == 'nuevo'){
             $padre = $this->input->post('txt_men_padre');
             if($padre > 0){/*sub_menu*/
-                $this->menu->getRow($padre);
-                if($this->menu->men_id > 0){
+                $isPadre = $this->menu->padre_exists($padre);
+                if($isPadre > 0){
                     $this->menu->getValsForm($this->input->post());
+                    $this->menu->men_ruta = quitarAcentos($this->input->post('txt_men_nombre'));
                     if($this->menu->insert()){
                         $this->writeLog("Registro menú {$this->menu->men_nombre}(id::{$this->menu->men_id})");
                         redirect('configuracion/menu/submenu/'.$padre);
@@ -57,6 +58,7 @@ class Menu extends CI_Controller{
                 }
             }else{
                 $this->menu->getValsForm($this->input->post());
+                $this->menu->ruta = quitarAcentos($this->input->post('txt_men_nombre'));
                 if($this->menu->insert()){
                     $this->writeLog("Registro menú {$this->menu->men_nombre}(id::{$this->menu->men_id})");
                     redirect('configuracion/menu/index');

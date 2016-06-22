@@ -41,9 +41,6 @@ class Menu_model extends CI_Controller{
         if(isset($post['txt_men_nombre'])){
             $this->men_nombre = $post['txt_men_nombre'];
         }
-        if(isset($post['txt_men_ruta'])){
-            $this->men_ruta = $post['txt_men_ruta'];
-        }
         if(isset($post['txt_men_padre'])){
             $this->men_padre = $post['txt_men_padre'];
         }
@@ -86,5 +83,13 @@ class Menu_model extends CI_Controller{
             $this->men_padre = $arreglo[0]->men_padre;
             $this->men_estado = $arreglo[0]->men_estado;
         }
+    }
+    
+    public function padre_exists($id){
+        $where['men_id'] = $id;
+        $where['men_estado'] = 1;
+        $where['men_padre'] = 0;
+        $query = $this->db->where($where)->from(self::$_table)->count_all_results();
+        return $query;
     }
 }

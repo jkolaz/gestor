@@ -1,9 +1,9 @@
-var controlador = 'seccion/servicio/';
+var controlador = 'seccion/convocatoria/';
 jQuery(document).ready( function() {
     nuevo();
     estado();
     $('#guardar').click(function(){
-        //$('#txt_bie_contenido').val($('.note-editable').html());
+        $('#txt_con_descripcion').val($('.note-editable').html());
     });
     
     $('#cancelar').click(function(){
@@ -43,7 +43,7 @@ function nuevo(){
 function estado(){
     $('.icono').click(function(){
         var icon = $(this).attr('icono');
-        var id = $(this).attr('id_servicio');
+        var id = $(this).attr('id_convocatoria');
         $.ajax({
             type: "POST",
             cache: false,

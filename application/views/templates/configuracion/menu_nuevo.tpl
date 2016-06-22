@@ -6,7 +6,7 @@
             <section class="panel">
                 <header class="panel-heading">
 
-                    <h2 class="panel-title">Nueva sede</h2>
+                    <h2 class="panel-title">Nuevo Menú</h2>
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
@@ -15,14 +15,6 @@
                             <input type="text" name="txt_men_nombre" id="txt_men_nombre" class="form-control" placeholder="ej.: ¿Quienes Somos?" required value=""/>
                         </div>
                     </div>
-                    {if $padre > 0}
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Ruta <span class="required">*</span></label>
-                        <div class="col-sm-9">
-                            <input type="text" name="txt_men_ruta" id="txt_men_ruta" class="form-control" placeholder="ej.: quienessomos" required value=""/>
-                        </div>
-                    </div>
-                    {/if}
                 </div>
                 <footer class="panel-footer">
                     <div class="row">

@@ -11,13 +11,13 @@
  *
  * @author Usuario
  */
-class Servicio extends CI_Controller {
+class Convocatoria extends CI_Controller {
     //put your code here
     public function __construct() {
         parent::__construct();
         $this->load->model('configuracion/sede_model', 'sede');
-        $this->load->model('seccion/servicio_model', 'servicio');
-        $this->smartyci->assign('listado', 'Servicios');
+        $this->load->model('seccion/convocatoria_model', 'convocatoria');
+        $this->smartyci->assign('listado', 'Convocatorias');
         $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
     
@@ -25,18 +25,18 @@ class Servicio extends CI_Controller {
         $sede = $this->session->userdata('sede');
         $this->sede->getSedeById($sede);
         if($this->sede->sed_id > 0){
-            $where['ser_sed_id'] = $sede;
-            $obj = $this->servicio->getAll($where);
+            $where['con_sed_id'] = $sede;
+            $obj = $this->convocatoria->getAll($where);
             if($obj){
                 foreach ($obj as $id=>$value){
                     $icon_estado = 'fa-ban';
-                    if($value->ser_estado == 1){
+                    if($value->con_estado == 1){
                         $icon_estado = 'fa-check';
                     }
                     $obj[$id]->icon_estado = $icon_estado;
                 }
             }
-            $this->smartyci->assign('objServicio', $obj);
+            $this->smartyci->assign('objConvocatoria', $obj);
             $this->smartyci->show_page(NULL, uniqid());
         }else{
             redirect(URL_NO_PERMISO);
@@ -49,18 +49,18 @@ class Servicio extends CI_Controller {
         if($this->sede->sed_id > 0){
             $action = $this->input->post('txt_action');
             if(isset($action) && $action == 'nuevo'){
-                $this->servicio->getValsForm($this->input->post());
-                $this->servicio->ser_sed_id = $sede;
-                $this->servicio->ser_url = quitarAcentos($this->input->post('txt_ser_nombre'));
-                if(isset($_FILES["txt_ser_imagen"]["name"]) && $_FILES["txt_ser_imagen"]["name"] != ""){
-                    if ((($_FILES["txt_ser_imagen"]["type"] == "image/png")
-                        || ($_FILES["txt_ser_imagen"]["type"] == "image/jpeg")
-                        || ($_FILES["txt_ser_imagen"]["type"] == "image/jpg"))) {
-                            if(!is_array($_FILES["txt_ser_imagen"]["name"])){
-                                $extension = pathinfo($_FILES["txt_ser_imagen"]["name"]);
-                                $destination = uniqid('servicio_').'.'.$extension['extension'];
-                                if(move_uploaded_file($_FILES['txt_ser_imagen']['tmp_name'], PATH_GALLERY.$destination)){
-                                    $this->servicio->ser_imagen = $destination;
+                $this->convocatoria->getValsForm($this->input->post());
+                $this->convocatoria->con_sed_id = $sede;
+                $this->convocatoria->con_url = quitarAcentos($this->input->post('txt_con_nombre'));
+                if(isset($_FILES["txt_con_imagen"]["name"]) && $_FILES["txt_con_imagen"]["name"] != ""){
+                    if ((($_FILES["txt_con_imagen"]["type"] == "image/png")
+                        || ($_FILES["txt_con_imagen"]["type"] == "image/jpeg")
+                        || ($_FILES["txt_con_imagen"]["type"] == "image/jpg"))) {
+                            if(!is_array($_FILES["txt_con_imagen"]["name"])){
+                                $extension = pathinfo($_FILES["txt_con_imagen"]["name"]);
+                                $destination = uniqid('convocatoria_').'.'.$extension['extension'];
+                                if(move_uploaded_file($_FILES['txt_con_imagen']['tmp_name'], PATH_GALLERY.$destination)){
+                                    $this->convocatoria->con_imagen = $destination;
                                 }
                             }else{
                                 $this->session->set_userdata('message_id', 2);
@@ -69,22 +69,22 @@ class Servicio extends CI_Controller {
                     }else{
                         $this->session->set_userdata('message_id', 3);
                         $this->session->set_userdata('message', 'ERR3');
-                        redirect('seccion/servicio/nuevo/');
+                        redirect('seccion/convocatoria/nuevo');
                     }
                 }
-                if($this->servicio->insert()){
+                if($this->convocatoria->insert()){
                     $this->session->set_userdata('message_id', 1);
                     $this->session->set_userdata('message', 'MSG1');
-                    $this->writeLog("Registro Servicio {$this->servicio->ser_nombre} (id::{$this->servicio->ser_id})");
-                    redirect('seccion/servicio/index');
+                    $this->writeLog("Registro Convocatoria {$this->convocatoria->con_nombre} (id::{$this->convocatoria->con_id})");
+                    redirect('seccion/convocatoria/index');
                 }else{
                     $this->session->set_userdata('message_id', 2);
                     $this->session->set_userdata('message', 'ERR1');
-                    redirect('seccion/servicio/nuevo/');
+                    redirect('seccion/convocatoria/nuevo');
                 }
             }else{
-                $this->smartyci->assign('details', 'Servicios');
-                $this->smartyci->assign('url_back', 'seccion/servicio/index');
+                $this->smartyci->assign('details', 'Convocatorias');
+                $this->smartyci->assign('url_back', 'seccion/convocatoria/index');
                 $this->smartyci->assign('form', 1);
                 $this->smartyci->show_page(NULL, uniqid());
             }
@@ -98,13 +98,13 @@ class Servicio extends CI_Controller {
         $id = $this->input->post('id');
         $icon = $this->input->post('icon');
         if($id>0){
-            $this->servicio->getRow($id);
-            if($this->servicio->ser_id > 0){
-                if($this->servicio->ser_estado == 1){
-                    $this->servicio->ser_estado = 0;
+            $this->convocatoria->getRow($id);
+            if($this->convocatoria->con_id > 0){
+                if($this->convocatoria->con_estado == 1){
+                    $this->convocatoria->con_estado = 0;
                     $icon = 'fa-ban';
                 }else{
-                    $this->servicio->ser_estado = 1;
+                    $this->convocatoria->con_estado = 1;
                     $icon = 'fa-check';
                 }
                 $this->servicio->update();
@@ -117,22 +117,22 @@ class Servicio extends CI_Controller {
         $sede = $this->session->userdata('sede');
         $this->sede->getSedeById($sede);
         if($this->sede->sed_id > 0){
-            $this->servicio->getRow($id);
-            if($this->servicio->ser_id > 0){
+            $this->convocatoria->getRow($id);
+            if($this->convocatoria->con_id > 0){
                 $action = $this->input->post('txt_action');
                 if(isset($action) && $action == 'editar'){
-                    $this->servicio->getValsForm($this->input->post());
-                    $this->servicio->ser_url = quitarAcentos($this->input->post('txt_ser_nombre'));
-                    if(isset($_FILES["txt_ser_imagen"]["name"]) && $_FILES["txt_ser_imagen"]["name"] != ""){
-                        if ((($_FILES["txt_ser_imagen"]["type"] == "image/png")
-                            || ($_FILES["txt_ser_imagen"]["type"] == "image/jpeg")
-                            || ($_FILES["txt_ser_imagen"]["type"] == "image/jpg"))) {
-                                if(!is_array($_FILES["txt_ser_imagen"]["name"])){
-                                    $extension = pathinfo($_FILES["txt_ser_imagen"]["name"]);
+                    $this->convocatoria->getValsForm($this->input->post());
+                    $this->convocatoria->con_url = quitarAcentos($this->input->post('txt_con_nombre'));
+                    if(isset($_FILES["txt_con_imagen"]["name"]) && $_FILES["txt_con_imagen"]["name"] != ""){
+                        if ((($_FILES["txt_con_imagen"]["type"] == "image/png")
+                            || ($_FILES["txt_con_imagen"]["type"] == "image/jpeg")
+                            || ($_FILES["txt_con_imagen"]["type"] == "image/jpg"))) {
+                                if(!is_array($_FILES["txt_con_imagen"]["name"])){
+                                    $extension = pathinfo($_FILES["txt_con_imagen"]["name"]);
                                     $destination = uniqid('servicio_').'.'.$extension['extension'];
-                                    if(move_uploaded_file($_FILES['txt_ser_imagen']['tmp_name'], PATH_GALLERY.$destination)){
-                                        unlink(PATH_GALLERY.$this->servicio->ser_imagen);
-                                        $this->servicio->ser_imagen = $destination;
+                                    if(move_uploaded_file($_FILES['txt_con_imagen']['tmp_name'], PATH_GALLERY.$destination)){
+                                        unlink(PATH_GALLERY.$this->convocatoria->con_imagen);
+                                        $this->convocatoria->con_imagen = $destination;
                                     }
                                 }else{
                                     $this->session->set_userdata('message_id', 2);
@@ -141,23 +141,23 @@ class Servicio extends CI_Controller {
                         }else{
                             $this->session->set_userdata('message_id', 3);
                             $this->session->set_userdata('message', 'ERR3');
-                            redirect('seccion/servicio/editar/'.$id);
+                            redirect('seccion/convocatoria/editar/'.$id);
                         }
                     }
-                    if($this->servicio->update()){
+                    if($this->convocatoria->update()){
                         $this->session->set_userdata('message_id', 1);
                         $this->session->set_userdata('message', 'MSG1');
-                        $this->writeLog("Editó servicio {$this->servicio->ser_nombre} (id::{$this->servicio->ser_id})");
-                        redirect('seccion/servicio/index');
+                        $this->writeLog("Editó convocatoria {$this->convocatoria->con_nombre} (id::{$this->convocatoria->con_id})");
+                        redirect('seccion/convocatoria/index');
                     }else{
                         $this->session->set_userdata('message_id', 2);
                         $this->session->set_userdata('message', 'ERR1');
-                        redirect('seccion/servicio/editar/'.$id);
+                        redirect('seccion/convocatoria/editar/'.$id);
                     }
                 }else{
                     $this->smartyci->assign('form', 1);
                     $this->smartyci->assign('id', $id);
-                    $this->smartyci->assign('stdServicio', $this->servicio);
+                    $this->smartyci->assign('stdConvocatoria', $this->convocatoria);
                     $this->smartyci->show_page(NULL, uniqid());
                 }
             }else{
