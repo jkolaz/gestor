@@ -88,7 +88,6 @@ class Novedad_model extends CI_Model{
             $insert['nov_issuu'] = $this->nov_issuu;
         }
         if($this->nov_destacada >= 0){
-            imprimir($this->nov_destacada);
             $insert['nov_destacada'] = $this->nov_destacada;
         }
         if($this->nov_imagen != ""){
