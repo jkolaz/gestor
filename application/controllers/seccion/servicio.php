@@ -131,7 +131,9 @@ class Servicio extends CI_Controller {
                                     $extension = pathinfo($_FILES["txt_ser_imagen"]["name"]);
                                     $destination = uniqid('servicio_').'.'.$extension['extension'];
                                     if(move_uploaded_file($_FILES['txt_ser_imagen']['tmp_name'], PATH_GALLERY.$destination)){
-                                        unlink(PATH_GALLERY.$this->servicio->ser_imagen);
+                                        if($this->servicio->ser_imagen !=""){
+                                            unlink(PATH_GALLERY.$this->servicio->ser_imagen);
+                                        }
                                         $this->servicio->ser_imagen = $destination;
                                     }
                                 }else{

@@ -107,7 +107,7 @@ class Convocatoria extends CI_Controller {
                     $this->convocatoria->con_estado = 1;
                     $icon = 'fa-check';
                 }
-                $this->servicio->update();
+                $this->convocatoria->update();
                 $result = 1;
             }
         }
