@@ -23,6 +23,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>url</th>
                                 <th>Imagen</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -33,10 +34,13 @@
                             {section name=tipo loop=$objServicio}
                             <tr class="active">
                                 <td>{$objServicio[tipo]->ser_nombre}</td>
+                                <td>{$objServicio[tipo]->ser_url}</td>
                                 <td>
+                                    {if $objServicio[tipo]->ser_imagen neq ""}
                                     <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objServicio[tipo]->ser_imagen}">
                                         <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$objServicio[tipo]->ser_imagen}">
                                     </a>
+                                    {/if}
                                 </td>
                                 <td class="actions">
                                     <a href="javascript:;" class="icono" id="lIcono_{$objServicio[tipo]->ser_id}" icono="{$objServicio[tipo]->icon_estado}" id_servicio="{$objServicio[tipo]->ser_id}">

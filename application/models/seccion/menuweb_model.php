@@ -123,4 +123,46 @@ class Menuweb_model extends CI_Model{
         }
         return NULL;
     }
+    
+    public function getUrlPermitidas($sede,$permitidos = array(), $value = ""){
+        $arreglo = array();
+        $aPadre = array();
+        $where['mw_estado'] = 1;
+        $where['men_estado'] = 1;
+        $where['mw_sed_id'] = $sede;
+        if(count($permitidos) > 0){
+            $this->db->where_in('men_padre', $permitidos);
+        }
+        $firstQuery = $this->db->where($where)
+                        ->join('gc_menu', 'gc_menu.men_id=gc_menu_web.mw_men_id')
+                        ->get(self::$_table);
+        if($firstQuery->num_rows > 0){
+            foreach ($firstQuery->result() as $menu){
+                $aPadre[] = $menu->men_padre;
+            }
+        }
+        $aPadre = array_unique($aPadre);
+        if(count($aPadre) > 0){
+            $where2['men_estado'] = 1;
+            $secondQuery = $this->db->where($where2)
+                                ->where_in('men_id', $aPadre)
+                                ->get('gc_menu');
+            if($secondQuery->num_rows > 0){
+                foreach ($secondQuery->result() as $id=>$padre){
+                    $arreglo[$id] = $padre;
+                    foreach ($firstQuery->result() as $hijo){
+                        $selected = '';
+                        if($hijo->men_ruta == $value){
+                            $selected = 'selected="selected"';
+                        }
+                        $hijo->selected = $selected;
+                        if($padre->men_id == $hijo->men_padre){
+                            $arreglo[$id]->sub_menu[] = $hijo;
+                        }
+                    }
+                }
+            }
+        }
+        return $arreglo;
+    }
 }

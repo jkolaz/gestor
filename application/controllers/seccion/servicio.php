@@ -17,6 +17,7 @@ class Servicio extends CI_Controller {
         parent::__construct();
         $this->load->model('configuracion/sede_model', 'sede');
         $this->load->model('seccion/servicio_model', 'servicio');
+        $this->load->model('seccion/menuweb_model', 'menuweb');
         $this->smartyci->assign('listado', 'Servicios');
         $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
@@ -51,7 +52,6 @@ class Servicio extends CI_Controller {
             if(isset($action) && $action == 'nuevo'){
                 $this->servicio->getValsForm($this->input->post());
                 $this->servicio->ser_sed_id = $sede;
-                $this->servicio->ser_url = quitarAcentos($this->input->post('txt_ser_nombre'));
                 if(isset($_FILES["txt_ser_imagen"]["name"]) && $_FILES["txt_ser_imagen"]["name"] != ""){
                     if ((($_FILES["txt_ser_imagen"]["type"] == "image/png")
                         || ($_FILES["txt_ser_imagen"]["type"] == "image/jpeg")
@@ -83,6 +83,8 @@ class Servicio extends CI_Controller {
                     redirect('seccion/servicio/nuevo/');
                 }
             }else{
+                $objMenu = $this->menuweb->getUrlPermitidas($sede, array(3), '');
+                $this->smartyci->assign('objMenu', $objMenu);
                 $this->smartyci->assign('details', 'Servicios');
                 $this->smartyci->assign('url_back', 'seccion/servicio/index');
                 $this->smartyci->assign('form', 1);
@@ -122,7 +124,6 @@ class Servicio extends CI_Controller {
                 $action = $this->input->post('txt_action');
                 if(isset($action) && $action == 'editar'){
                     $this->servicio->getValsForm($this->input->post());
-                    $this->servicio->ser_url = quitarAcentos($this->input->post('txt_ser_nombre'));
                     if(isset($_FILES["txt_ser_imagen"]["name"]) && $_FILES["txt_ser_imagen"]["name"] != ""){
                         if ((($_FILES["txt_ser_imagen"]["type"] == "image/png")
                             || ($_FILES["txt_ser_imagen"]["type"] == "image/jpeg")
@@ -157,8 +158,12 @@ class Servicio extends CI_Controller {
                         redirect('seccion/servicio/editar/'.$id);
                     }
                 }else{
+                    $objMenu = $this->menuweb->getUrlPermitidas($sede, array(3), $this->servicio->ser_url);
+                    $this->smartyci->assign('objMenu', $objMenu);
                     $this->smartyci->assign('form', 1);
                     $this->smartyci->assign('id', $id);
+                    $this->smartyci->assign('details', 'Servicios');
+                    $this->smartyci->assign('url_back', 'seccion/servicio/index');
                     $this->smartyci->assign('stdServicio', $this->servicio);
                     $this->smartyci->show_page(NULL, uniqid());
                 }

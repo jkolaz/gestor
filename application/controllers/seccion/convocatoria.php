@@ -17,6 +17,7 @@ class Convocatoria extends CI_Controller {
         parent::__construct();
         $this->load->model('configuracion/sede_model', 'sede');
         $this->load->model('seccion/convocatoria_model', 'convocatoria');
+        $this->load->model('seccion/menuweb_model', 'menuweb');
         $this->smartyci->assign('listado', 'Convocatorias');
         $this->smartyci->assign('js_script', $this->_carpeta.'/'.$this->_class.'.js');
     }
@@ -51,7 +52,6 @@ class Convocatoria extends CI_Controller {
             if(isset($action) && $action == 'nuevo'){
                 $this->convocatoria->getValsForm($this->input->post());
                 $this->convocatoria->con_sed_id = $sede;
-                $this->convocatoria->con_url = quitarAcentos($this->input->post('txt_con_nombre'));
                 if(isset($_FILES["txt_con_imagen"]["name"]) && $_FILES["txt_con_imagen"]["name"] != ""){
                     if ((($_FILES["txt_con_imagen"]["type"] == "image/png")
                         || ($_FILES["txt_con_imagen"]["type"] == "image/jpeg")
@@ -83,6 +83,8 @@ class Convocatoria extends CI_Controller {
                     redirect('seccion/convocatoria/nuevo');
                 }
             }else{
+                $objMenu = $this->menuweb->getUrlPermitidas($sede, array(7, 30), '');
+                $this->smartyci->assign('objMenu', $objMenu);
                 $this->smartyci->assign('details', 'Convocatorias');
                 $this->smartyci->assign('url_back', 'seccion/convocatoria/index');
                 $this->smartyci->assign('form', 1);
@@ -122,7 +124,6 @@ class Convocatoria extends CI_Controller {
                 $action = $this->input->post('txt_action');
                 if(isset($action) && $action == 'editar'){
                     $this->convocatoria->getValsForm($this->input->post());
-                    $this->convocatoria->con_url = quitarAcentos($this->input->post('txt_con_nombre'));
                     if(isset($_FILES["txt_con_imagen"]["name"]) && $_FILES["txt_con_imagen"]["name"] != ""){
                         if ((($_FILES["txt_con_imagen"]["type"] == "image/png")
                             || ($_FILES["txt_con_imagen"]["type"] == "image/jpeg")
@@ -155,6 +156,8 @@ class Convocatoria extends CI_Controller {
                         redirect('seccion/convocatoria/editar/'.$id);
                     }
                 }else{
+                    $objMenu = $this->menuweb->getUrlPermitidas($sede, array(7, 30), $this->convocatoria->con_url);
+                    $this->smartyci->assign('objMenu', $objMenu);
                     $this->smartyci->assign('form', 1);
                     $this->smartyci->assign('id', $id);
                     $this->smartyci->assign('stdConvocatoria', $this->convocatoria);

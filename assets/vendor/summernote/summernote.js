@@ -3397,10 +3397,13 @@
       if (options.height > 0) {
         $('<div class="note-statusbar">' + tplStatusbar() + '</div>').prependTo($editor);
       }
-
+      var $id_editable = '';
+      if(options.id_textarea){
+          $id_editable = 'id="editable_'+options.id_textarea+'" ';
+      }
       //03. create Editable
       var isContentEditable = !$holder.is(':disabled');
-      var $editable = $('<div class="note-editable" contentEditable="' + isContentEditable + '"></div>')
+      var $editable = $('<div class="note-editable" '+$id_editable+'contentEditable="' + isContentEditable + '"></div>')
           .prependTo($editor);
       if (options.height) {
         $editable.height(options.height);

@@ -44,6 +44,18 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Listado</label>
+                        <div class="col-sm-9">
+                            <div class="summernote" data-plugin-summernote data-plugin-options='{literal}{"id_textarea":"txt_nov_listado", "height": 180, "codemirror": { "theme": "ambiance" } }{/literal}'>{$stdNovedad->nov_listado}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Contáctenos</label>
+                        <div class="col-sm-9">
+                            <div class="summernote" data-plugin-summernote data-plugin-options='{literal}{"id_textarea":"txt_nov_contactenos", "height": 100, "codemirror": { "theme": "ambiance" } }{/literal}'>{$stdNovedad->nov_contactenos}</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Imagen</label>
                         <div class="col-sm-1">
                             <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$stdNovedad->nov_imagen}">

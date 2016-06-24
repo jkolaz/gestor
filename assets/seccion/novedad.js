@@ -4,7 +4,9 @@ jQuery(document).ready( function() {
     estado();
     destacado();
     $('#guardar').click(function(){
-        $('#txt_nov_contenido').val($('.note-editable').html());
+        $('#txt_nov_contenido').val($('#editable_txt_nov_contenido').html());
+        $('#txt_nov_listado').val($('#editable_txt_nov_listado').html());
+        $('#txt_nov_contactenos').val($('#editable_txt_nov_contactenos').html());
     });
     
     $('#cancelar').click(function(){

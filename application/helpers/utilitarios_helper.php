@@ -23,6 +23,8 @@ if (!function_exists('imprimir')) {
     }
 }
 
+
+
 if(!function_exists('format_date')){
     function format_date_actual(){
         $dia_text = "";

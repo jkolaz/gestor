@@ -45,6 +45,9 @@ class Convocatoria_model extends CI_Model{
         if(isset($post['txt_con_nombre'])){
             $this->con_nombre = $post['txt_con_nombre'];
         }
+        if(isset($post['txt_con_url'])){
+            $this->con_url = $post['txt_con_url'];
+        }
         if(isset($post['txt_con_descripcion'])){
             $this->con_descripcion = $post['txt_con_descripcion'];
         }

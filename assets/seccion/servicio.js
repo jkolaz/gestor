@@ -3,7 +3,8 @@ jQuery(document).ready( function() {
     nuevo();
     estado();
     $('#guardar').click(function(){
-        //$('#txt_bie_contenido').val($('.note-editable').html());
+        $('#txt_ser_descripcion').val($('#editable_txt_ser_descripcion').html());
+        $('#txt_ser_listado').val($('#editable_txt_ser_listado').html());
     });
     
     $('#cancelar').click(function(){

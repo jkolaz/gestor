@@ -23,6 +23,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>URL</th>
                                 <th>Imagen</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -33,10 +34,13 @@
                             {section name=tipo loop=$objConvocatoria}
                             <tr class="active">
                                 <td>{$objConvocatoria[tipo]->con_nombre}</td>
+                                <td>{$objConvocatoria[tipo]->con_url}</td>
                                 <td>
+                                    {if $objConvocatoria[tipo]->con_imagen neq ""}
                                     <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objConvocatoria[tipo]->con_imagen}">
                                         <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$objConvocatoria[tipo]->con_imagen}">
                                     </a>
+                                    {/if}
                                 </td>
                                 <td class="actions">
                                     <a href="javascript:;" class="icono" id="lIcono_{$objConvocatoria[tipo]->con_id}" icono="{$objConvocatoria[tipo]->icon_estado}" id_convocatoria="{$objConvocatoria[tipo]->con_id}">

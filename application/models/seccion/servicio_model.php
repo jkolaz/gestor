@@ -46,6 +46,9 @@ class Servicio_model extends CI_Model{
         if(isset($post['txt_ser_nombre'])){
             $this->ser_nombre = $post['txt_ser_nombre'];
         }
+        if(isset($post['txt_ser_url'])){
+            $this->ser_url = $post['txt_ser_url'];
+        }
         if(isset($post['txt_ser_descripcion'])){
             $this->ser_descripcion = $post['txt_ser_descripcion'];
         }

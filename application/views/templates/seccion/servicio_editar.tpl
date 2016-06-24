@@ -16,6 +16,25 @@
                             <p><code>Máximo</code> 50.</p>
                         </div>
                     </div>
+                            <div class="form-group">
+                        <label class="col-sm-3 control-label">URL <span class="required">*</span></label>
+                        <div class="col-sm-4">
+                            <select data-plugin-selectTwo id="txt_ser_url" name="txt_ser_url" class="form-control populate" required>
+                                <option value="">-Seleccionar-</option>
+                                {if $objMenu|@count gt 0}
+                                    {section name=id loop=$objMenu}
+                                        <optgroup label="{$objMenu[id]->men_nombre}">
+                                            {if $objMenu[id]->sub_menu|@count gt 0}
+                                                {section name=sm loop=$objMenu[id]->sub_menu}
+                                                    <option value="{$objMenu[id]->sub_menu[sm]->men_ruta}" {$objMenu[id]->sub_menu[sm]->selected}>{$objMenu[id]->sub_menu[sm]->men_nombre}</option>
+                                                {/section}
+                                            {/if}
+                                        </optgroup>
+                                    {/section}
+                                {/if}
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Contenido <span class="required">*</span></label>
                         <div class="col-sm-9">

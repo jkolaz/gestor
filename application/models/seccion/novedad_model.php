@@ -25,6 +25,8 @@ class Novedad_model extends CI_Model{
     public $nov_contenido;
     public $nov_estado;
     public $nov_sed_id;
+    public $nov_listado;
+    public $nov_contactenos;
     
     public function __construct() {
         parent::__construct();
@@ -50,6 +52,12 @@ class Novedad_model extends CI_Model{
         }
         if(isset($post['txt_nov_subtitulo'])){
             $this->nov_subtitulo = $post['txt_nov_subtitulo'];
+        }
+        if(isset($post['txt_nov_listado'])){
+            $this->nov_listado = $post['txt_nov_listado'];
+        }
+        if(isset($post['txt_nov_contactenos'])){
+            $this->nov_contactenos = $post['txt_nov_contactenos'];
         }
         if(isset($post['txt_nov_youtube'])){
             $this->nov_youtube = $post['txt_nov_youtube'];
@@ -80,6 +88,12 @@ class Novedad_model extends CI_Model{
         }
         if($this->nov_subtitulo != ""){
             $insert['nov_subtitulo'] = $this->nov_subtitulo;
+        }
+        if($this->nov_listado != ""){
+            $insert['nov_listado'] = $this->nov_listado;
+        }
+        if($this->nov_contactenos != ""){
+            $insert['nov_contactenos'] = $this->nov_contactenos;
         }
         if($this->nov_youtube != ""){
             $insert['nov_youtube'] = $this->nov_youtube;
@@ -120,6 +134,8 @@ class Novedad_model extends CI_Model{
             $this->nov_id = $arreglo[0]->nov_id;
             $this->nov_titulo = $arreglo[0]->nov_titulo;
             $this->nov_subtitulo = $arreglo[0]->nov_subtitulo;
+            $this->nov_listado = $arreglo[0]->nov_listado;
+            $this->nov_contactenos = $arreglo[0]->nov_contactenos;
             $this->nov_youtube = $arreglo[0]->nov_youtube;
             $this->nov_issuu = $arreglo[0]->nov_issuu;
             $this->nov_destacada = $arreglo[0]->nov_destacada;
@@ -136,6 +152,12 @@ class Novedad_model extends CI_Model{
         }
         if($this->nov_subtitulo != ""){
             $update['nov_subtitulo'] = $this->nov_subtitulo;
+        }
+        if($this->nov_listado != ""){
+            $update['nov_listado'] = $this->nov_listado;
+        }
+        if($this->nov_contactenos != ""){
+            $update['nov_contactenos'] = $this->nov_contactenos;
         }
         if($this->nov_youtube != ""){
             $update['nov_youtube'] = $this->nov_youtube;
