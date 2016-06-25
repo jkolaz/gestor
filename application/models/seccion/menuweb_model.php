@@ -19,6 +19,7 @@ class Menuweb_model extends CI_Model{
     public $mw_men_id;
     public $mw_sed_id;
     public $mw_estado;
+    public $mw_imagen;
     
     public function __construct() {
         parent::__construct();
@@ -42,6 +43,7 @@ class Menuweb_model extends CI_Model{
             $this->mw_sed_id = $arreglo[0]->mw_sed_id;
             $this->mw_men_id = $arreglo[0]->mw_men_id;
             $this->mw_estado = $arreglo[0]->mw_estado;
+            $this->mw_imagen = $arreglo[0]->mw_imagen;
         }
     }
     
@@ -77,6 +79,9 @@ class Menuweb_model extends CI_Model{
         if($this->mw_sed_id != ""){
             $insert['mw_sed_id'] = $this->mw_sed_id;
         }
+        if($this->mw_imagen != ""){
+            $insert['mw_imagen'] = $this->mw_imagen;
+        }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
             $this->mw_id = $this->db->insert_id();
@@ -96,6 +101,9 @@ class Menuweb_model extends CI_Model{
         if($this->mw_sed_id != ""){
             $update['mw_sed_id'] = $this->mw_sed_id;
         }
+        if($this->mw_imagen != ""){
+            $update['mw_imagen'] = $this->mw_imagen;
+        }
         if($this->mw_id > 0){
             if(count($update)>0){
                 $this->db->where(self::$_PK,  $this->mw_id)->update(self::$_table, $update);
@@ -111,7 +119,9 @@ class Menuweb_model extends CI_Model{
                     gc_menu.men_id,
                     gc_menu.men_nombre,
                     gc_menu.men_ruta,
-                    if(((select count(gc_menu_web.mw_id) from gc_menu_web where gc_menu_web.mw_men_id=gc_menu.men_id and gc_menu_web.mw_sed_id={$sede} and gc_menu_web.mw_estado=1) >0), 'checked', '') as 'checked'
+                    if(((select count(gc_menu_web.mw_id) from gc_menu_web where gc_menu_web.mw_men_id=gc_menu.men_id and gc_menu_web.mw_sed_id={$sede} and gc_menu_web.mw_estado=1) >0), 'checked', '') as 'checked',
+                    (select gc_menu_web.mw_imagen from gc_menu_web where gc_menu_web.mw_men_id=gc_menu.men_id and gc_menu_web.mw_sed_id={$sede}) as imagen,
+                    (select gc_menu_web.mw_id from gc_menu_web where gc_menu_web.mw_men_id=gc_menu.men_id and gc_menu_web.mw_sed_id={$sede}) as id_permiso
                 FROM gc_menu
                 where 
                     gc_menu.men_estado = 1
@@ -164,5 +174,18 @@ class Menuweb_model extends CI_Model{
             }
         }
         return $arreglo;
+    }
+    
+    public function getImageByMenu($menu, $sede){
+        $archivo = '';
+        $where['mw_men_id'] = $menu;
+        $where['mw_sed_id'] = $sede;
+        $query = $this->db->where($where)->get(self::$_table, 1);
+        if($query->num_rows > 0){
+            $result = $query->result();
+            $archivo = $result[0]->mw_imagen;
+        }
+        
+        return $archivo;
     }
 }

@@ -2,7 +2,7 @@
     {$message}
     <div class="col-md-12">
         <form id="form" action="{$SERVER_ADMIN}seccion/convocatoria/editar/{$id}" method="post" class="form-horizontal" enctype="multipart/form-data">
-            <input name="txt_action" id="txt_action" type="hidden" value="editar">
+            <input name="txt_action" id="txt_action" type="hidden" value="configurar">
             <section class="panel">
                 <header class="panel-heading">
 
