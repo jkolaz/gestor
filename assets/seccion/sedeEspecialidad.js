@@ -1,6 +1,12 @@
 var controlador = 'seccion/sedeEspecialidad/';
 jQuery(document).ready( function() {
     menu_web();
+    estado();
+    $('#nuevo').click(function(){
+        var esp = $(this).attr('esp');
+        var url = base_url + controlador +'medicoNuevo/'+esp+'.html';
+        location.href = url;
+    });
 });
 
 function menu_web(){
@@ -23,6 +29,27 @@ function menu_web(){
             success: function(json){
                 if (json.respuesta === 1){
                     //$("#moalidatxt_" + cid).html(json.img_modalidad);
+                }
+            }
+        });
+    });
+}
+
+function estado(){
+    $('.icono').click(function(){
+        var icon = $(this).attr('icono');
+        var id = $(this).attr('id_medico');
+        $.ajax({
+            type: "POST",
+            cache: false,
+            dataType: "json",
+            data:{id:id, icon:icon},
+            url: base_url+controlador+'changeEstado.html',
+            success: function(json){
+                if (json.respuesta === 1){
+                    $('#icon_'+id).removeClass(icon);
+                    $('#icon_'+id).addClass(json.icon);
+                    $('#lIcono_'+id).attr('icono',json.icon)
                 }
             }
         });

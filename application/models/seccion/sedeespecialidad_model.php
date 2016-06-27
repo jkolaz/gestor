@@ -41,7 +41,7 @@ class Sedeespecialidad_model extends CI_Controller{
                 from
                     gc_especialidad 
                 where
-                    esp_estado";
+                    esp_estado = 1";
         
         $query = $this->db->query($sql);
         if ($query->num_rows > 0){
@@ -122,6 +122,25 @@ class Sedeespecialidad_model extends CI_Controller{
                 return TRUE;
             }
             return NULL;
+        }
+        return NULL;
+    }
+    
+    public function getEspecialidadBySede($sede, $id = ""){
+        $where['se_sed_id'] = $sede;
+        $where['se_estado'] = 1;
+        $where['esp_estado'] = 1;
+        if($id != ""){
+            $where['se_id'] = $id;
+        }
+        
+        $query = $this->db->where($where)
+                ->join('gc_especialidad', 'gc_especialidad.esp_id=gc_sede_especialidad.se_esp_id')
+                ->order_by('esp_nombre')
+                ->get(self::$_table);
+        
+        if($query->num_rows > 0){
+            return $query->result();
         }
         return NULL;
     }

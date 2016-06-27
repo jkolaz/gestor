@@ -39,7 +39,7 @@ class Especialidad extends CI_Controller{
         if(isset($action) && $action == 'nuevo'){
             $this->especialidad->getValsForm($this->input->post());
             if($this->especialidad->insert()){
-                $this->writeLog("Registró de especialidad {$this->especialidad->nombre} (id::{$this->especialidad->esp_id})");
+                $this->writeLog("Registró de especialidad {$this->especialidad->esp_nombre} (id::{$this->especialidad->esp_id})");
                 redirect('configuracion/especialidad/index');
             }else{
                 redirect('configuracion/especialidad/nuevo');

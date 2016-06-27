@@ -108,4 +108,35 @@ class Menu extends CI_Controller{
             redirect($this->_carpeta.'/'.$this->_class.'/index');
         }
     }
+    
+    public function editar($id){
+        $this->menu->getRow($id);
+        if($this->menu->men_id > 0){
+            $action = $this->input->post('txt_action');
+            if(isset($action) && $action == "editar"){
+                $this->menu->getValsForm($this->input->post());
+                $url = quitarAcentos($this->input->post('txt_men_nombre'));
+                if($url != $this->menu->men_ruta){
+                    
+                }
+                $this->menu->men_ruta = $url;
+                if($this->menu->update()){
+                    $this->session->set_userdata('message_id', 1);
+                    $this->session->set_userdata('message', 'MSG1');
+                    $this->writeLog("Editó menu {$this->menu->men_nombre} (id::{$this->menu->men_nombre})");
+                    redirect('configuracion/menu/index');
+                }else{
+                    $this->session->set_userdata('message_id', 2);
+                    $this->session->set_userdata('message', 'ERR1');
+                    redirect('configuracion/menu/editar/'.$id);
+                }
+            }  else {
+                $this->smartyci->assign('stdMenu', $this->menu);
+                $this->smartyci->assign('id', $id);
+                $this->smartyci->show_page(NULL, uniqid());
+            }
+        }else{
+            redirect('configuracion/menu/index');
+        }
+    }
 }

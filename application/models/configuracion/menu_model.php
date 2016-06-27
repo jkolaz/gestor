@@ -73,7 +73,6 @@ class Menu_model extends CI_Controller{
     
     public function getRow($id){
         $where['men_id'] = $id;
-        $where['men_estado <='] = 1;
         $query = $this->db->where($where)->get(self::$_table);
         if($query->num_rows > 0){
             $arreglo = $query->result();
@@ -91,5 +90,30 @@ class Menu_model extends CI_Controller{
         $where['men_padre'] = 0;
         $query = $this->db->where($where)->from(self::$_table)->count_all_results();
         return $query;
+    }
+    
+    public function update(){
+        $update = array();
+        if($this->men_nombre != ""){
+            $update['men_nombre'] = $this->men_nombre;
+        }
+        if($this->men_ruta != ""){
+            $update['men_ruta'] = $this->men_ruta;
+        }
+        if($this->men_estado >= 0 || $this->men_estado != ""){
+            $update['men_estado'] = $this->men_estado;
+        }
+        if($this->men_padre >= 0 || $this->men_padre != ""){
+            $update['men_padre'] = $this->men_padre;
+        }
+        
+        if($this->men_id > 0){
+            if(count($update)>0){
+                $this->db->where(self::$_PK,  $this->men_id)->update(self::$_table, $update);
+                return TRUE;
+            }
+            return NULL;
+        }
+        return NULL;
     }
 }

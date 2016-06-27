@@ -42,7 +42,7 @@ class Slider_model extends CI_Model{
         if(isset($post['txt_sli_imagen'])){
             $this->sli_imagen = $post['txt_sli_imagen'];
         }
-        if(isset($post['txt_sliss_sed_id'])){
+        if(isset($post['txt_sli_sed_id'])){
             $this->sli_sed_id = $post['txt_sli_sed_id'];
         }
     }

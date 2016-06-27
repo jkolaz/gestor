@@ -5,7 +5,7 @@
             <a href="#" class="fa fa-caret-down"></a>
         </div>
 
-        <h2 class="panel-title">Especialidades - {$sede}</h2>
+        <h2 class="panel-title">Especialidades</h2>
     </header>
     <div class="panel-body">
             <div class="table-responsive">

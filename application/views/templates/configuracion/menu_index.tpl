@@ -26,9 +26,10 @@
                             <tr>
                                 <th>Nombre</th>
                                 {if $padre eq 0}
+                                <th>URL</th>
                                 <th>Sub menús</th>
                                 {else}
-                                <th>Url</th>
+                                <th>URL</th>
                                 {/if}
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -40,6 +41,9 @@
                             <tr class="active">
                                 <td>{$objmenu[tipo]->men_nombre}</td>
                                 {if $padre eq 0}
+                                <td>
+                                    <i class="fa fa-chain"></i> <span>{$objmenu[tipo]->men_ruta}</span>
+                                </td>
                                 <td class="actions">
                                     <a href="{$SERVER_ADMIN}configuracion/menu/submenu/{$objmenu[tipo]->men_id}.html" title="Editar {$objmenu[tipo]->men_nombre}">
                                         <i class="fa fa-book"></i>
@@ -57,13 +61,13 @@
                                     </a>
                                 </td>
                                 <td class="actions">
-                                    <a href="{$SERVER_ADMIN}configuracion/sede/editar/{$objmenu[tipo]->men_id}.html" title="Editar {$objmenu[tipo]->men_nombre}">
+                                    <a href="{$SERVER_ADMIN}configuracion/menu/editar/{$objmenu[tipo]->men_id}.html" title="Editar {$objmenu[tipo]->men_nombre}">
                                         <i class="fa fa-pencil"></i>
                                     </a>&nbsp;&nbsp;&nbsp;
                                     {if $rol eq $idTA}
-                                    <a class="delete-row" href="javascript:;" onclick="eliminar({$objmenu[tipo]->men_id})" title="Eliminar {$objmenu[tipo]->men_nombre}">
+                                    <!--<a class="delete-row" href="javascript:;" onclick="eliminar({$objmenu[tipo]->men_id})" title="Eliminar {$objmenu[tipo]->men_nombre}">
                                         <i class="fa fa-trash-o"></i>
-                                    </a>
+                                    </a>-->
                                     {/if}
                                 </td>
                             </tr>
