@@ -23,7 +23,29 @@ if (!function_exists('imprimir')) {
     }
 }
 
-
+if(!function_exists('guardar_archivo')){
+    function guardar_archivo($nombre, $_archivo, $prefijo='', $eliminar = ''){
+        $respuesta = '';
+        $typeFile[] = "image/png";
+        $typeFile[] = "image/jpeg";
+        $typeFile[] = "image/jpg";
+        if(isset($_archivo[$nombre]["name"]) && $_archivo[$nombre]["name"] != ""){
+            if (in_array($_archivo[$nombre]["type"], $typeFile)) {
+                    if(!is_array($_archivo[$nombre]["name"])){
+                        $extension = pathinfo($_archivo[$nombre]["name"]);
+                        $destination = uniqid($prefijo).'.'.$extension['extension'];
+                        if(move_uploaded_file($_archivo[$nombre]['tmp_name'], PATH_GALLERY.$destination)){
+                            if($eliminar != ''){
+                                unlink(PATH_GALLERY.$eliminar);
+                            }
+                            $respuesta = $destination;
+                        }
+                    }
+            }
+        }
+        return $respuesta;
+    }
+}
 
 if(!function_exists('format_date')){
     function format_date_actual(){
