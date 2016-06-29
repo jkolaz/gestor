@@ -31,10 +31,16 @@ class Ordenes extends CI_Controller{
             if($obj){
                 foreach ($obj as $id=>$value){
                     $icon_estado = 'fa-ban';
+                    $presentacion = '';
                     if($value->ord_estado == 1){
                         $icon_estado = 'fa-check';
                     }
+                    $this->tipo_cuerpo->getRow($value->ord_tc_id);
+                    if($this->tipo_cuerpo->tc_id > 0){
+                        $presentacion = $this->tipo_cuerpo->tc_descripcion;
+                    }
                     $obj[$id]->icon_estado = $icon_estado;
+                    $obj[$id]->presentacion = $presentacion;
                 }
             }
             $this->smartyci->assign('sede_nombre', $this->sede->sed_nombre);
@@ -121,7 +127,7 @@ class Ordenes extends CI_Controller{
                         redirect('seccion/ordenes/editar/'.$id);
                     }
                 }else{
-                    $objTC = $this->tipo_cuerpo->getCombo();
+                    $objTC = $this->tipo_cuerpo->getCombo($this->ordenes->ord_tc_id);
                     $this->smartyci->assign('objTC', $objTC);
                     $this->smartyci->assign('form', 1);
                     $this->smartyci->assign('id', $id);

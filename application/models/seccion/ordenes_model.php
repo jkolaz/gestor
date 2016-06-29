@@ -22,6 +22,7 @@ class Ordenes_model extends CI_Model{
     public $ord_imagen;
     public $ord_estado;
     public $ord_sed_id;
+    public $ord_tc_id;
     
     public function __construct() {
         parent::__construct();
@@ -54,6 +55,9 @@ class Ordenes_model extends CI_Model{
         if(isset($post['txt_ord_imagen'])){
             $this->ord_imagen = $post['txt_ord_imagen'];
         }
+        if(isset($post['txt_ord_tc_id'])){
+            $this->ord_tc_id = $post['txt_ord_tc_id'];
+        }
     }
     public function insert(){
         $insert = array();
@@ -75,6 +79,9 @@ class Ordenes_model extends CI_Model{
         if($this->ord_sed_id >= 0){
             $insert['ord_sed_id'] = $this->ord_sed_id;
         }
+        if($this->ord_tc_id >= 0){
+            $insert['ord_tc_id'] = $this->ord_tc_id;
+        }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
             $this->ord_id = $this->db->insert_id();
@@ -95,6 +102,7 @@ class Ordenes_model extends CI_Model{
             $this->ord_imagen = $arreglo[0]->ord_imagen;
             $this->ord_estado = $arreglo[0]->ord_estado;
             $this->ord_sed_id = $arreglo[0]->ord_sed_id;
+            $this->ord_tc_id = $arreglo[0]->ord_tc_id;
         }
     }
     
@@ -117,6 +125,9 @@ class Ordenes_model extends CI_Model{
         }
         if($this->ord_sed_id >= 0 || $this->ord_sed_id != ""){
             $update['ord_sed_id'] = $this->ord_sed_id;
+        }
+        if($this->ord_tc_id >= 0 || $this->ord_tc_id != ""){
+            $update['ord_tc_id'] = $this->ord_tc_id;
         }
         
         if($this->ord_id > 0){

@@ -18,12 +18,12 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Tipo Presentación <span class="required">*</span></label>
                         <div class="col-sm-5">
-                            <select data-plugin-selectTwo id="txt_adm_sed_id" name="txt_adm_sed_id" class="form-control populate">
+                            <select data-plugin-selectTwo id="txt_ord_tc_id" name="txt_ord_tc_id" class="form-control populate" required>
                                 <option value="">Seleccionar sede</option>
                                 <optgroup label="Sede">
                                     {if $objTC|@count gt 0}
                                         {section name=id loop=$objTC}
-                                    <option value="{$objTC[id]->tc_id}">{$objTC[id]->tc_descripcion}</option>
+                                    <option value="{$objTC[id]->tc_id}" {$objTC[id]->selected}>{$objTC[id]->tc_descripcion}</option>
                                         {/section}
                                     {/if}
                                 </optgroup>

@@ -23,6 +23,7 @@
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Presentación</th>
                                 <th>Imagen</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -33,6 +34,7 @@
                             {section name=tipo loop=$objOrdenes}
                             <tr class="active">
                                 <td>{$objOrdenes[tipo]->ord_nombre}</td>
+                                <td>{$objOrdenes[tipo]->presentacion}</td>
                                 <td>
                                     {if $objOrdenes[tipo]->ord_imagen neq ""}
                                     <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objOrdenes[tipo]->ord_imagen}">
