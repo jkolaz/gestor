@@ -18,6 +18,7 @@ class Tipocuerpo_model extends CI_Model{
     public $tc_id;
     public $tc_descripcion;
     public $tc_estado;
+    public $tc_seccion;
     
     public function __construct() {
         parent::__construct();
@@ -50,6 +51,9 @@ class Tipocuerpo_model extends CI_Model{
         if($this->tc_estado >= 0){
             $insert['tc_estado'] = $this->tc_estado;
         }
+        if($this->tc_seccion >= 0){
+            $insert['tc_seccion'] = $this->tc_seccion;
+        }
         if(count($insert)>0){
             $this->db->insert(self::$_table, $insert);
             $this->tc_id = $this->db->insert_id();
@@ -66,6 +70,7 @@ class Tipocuerpo_model extends CI_Model{
             $this->tc_id = $arreglo[0]->tc_id;
             $this->tc_descripcion = $arreglo[0]->tc_descripcion;
             $this->tc_estado = $arreglo[0]->tc_estado;
+            $this->tc_seccion = $arreglo[0]->tc_seccion;
         }
     }
     
@@ -76,6 +81,9 @@ class Tipocuerpo_model extends CI_Model{
         }
         if($this->tc_estado >= 0 || $this->tc_estado != ""){
             $update['tc_estado'] = $this->tc_estado;
+        }
+        if($this->tc_seccion >= 0 || $this->tc_seccion != ""){
+            $update['tc_seccion'] = $this->tc_seccion;
         }
         
         if($this->tc_id > 0){
@@ -88,10 +96,11 @@ class Tipocuerpo_model extends CI_Model{
         return NULL;
     }
     
-    public function getCombo($seleccionado = "",$where = array()){
+    public function getCombo($seccion, $seleccionado = "",$where = array()){
         $arreglo = array();
         
         $where['tc_estado <='] = 1;
+        $where['tc_seccion'] = $seccion;
         
         $query = $this->db->where($where)->order_by('tc_descripcion')->get(self::$_table);
         

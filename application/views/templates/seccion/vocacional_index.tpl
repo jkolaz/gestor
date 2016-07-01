@@ -3,16 +3,16 @@
     Resize the browser to see the responsiveness in action.
 </div>-->
 <section class="panel">
+    {$message}
     <header class="panel-heading">
-
-        <h2 class="panel-title">Novedades</h2>
+        <h2 class="panel-title">Vocacional - <b>{$sede_nombre}</b></h2>
     </header>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">
                 <div class="mb-md" id="nuevo">
                     <button id="addToTable" class="btn btn-primary">
-                        Registrar novedad
+                        Registrar
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -22,33 +22,33 @@
                     <table class="table mb-none">
                         <thead>
                             <tr>
-                                <th>Titulo</th>
-                                <th>Sub-Titulo</th>
-                                <th>Fecha publicación</th>
-                                <th>Destacado</th>
+                                <th>Nombre</th>
+                                <th>Presentación</th>
+                                <th>Imagen</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {if $objNovedad|@count gt 0}
-                            {section name=tipo loop=$objNovedad}
+                        {if $objVocacional|@count gt 0}
+                            {section name=tipo loop=$objVocacional}
                             <tr class="active">
-                                <td>{$objNovedad[tipo]->nov_titulo}</td>
-                                <td>{$objNovedad[tipo]->nov_subtitulo}</td>
-                                <td>{$objNovedad[tipo]->nov_fecha_publicacion}</td>
+                                <td>{$objVocacional[tipo]->voc_nombre}</td>
+                                <td>{$objVocacional[tipo]->presentacion}</td>
+                                <td>
+                                    {if $objVocacional[tipo]->voc_imagen neq ""}
+                                    <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objVocacional[tipo]->voc_imagen}">
+                                        <img class="img-responsive" width="65" src="{$SERVER_GALLERY}{$objVocacional[tipo]->voc_imagen}">
+                                    </a>
+                                    {/if}
+                                </td>
                                 <td class="actions">
-                                    <a href="javascript:;" class="destacado" id="iDes_{$objNovedad[tipo]->nov_id}" icono="{$objNovedad[tipo]->icon_destacado}" id_novedad="{$objNovedad[tipo]->nov_id}">
-                                        <i class="fa {$objNovedad[tipo]->icon_destacado}" id="icond_{$objNovedad[tipo]->nov_id}"></i>
+                                    <a href="javascript:;" class="icono" id="lIcono_{$objVocacional[tipo]->voc_id}" icono="{$objVocacional[tipo]->icon_estado}" id_vocacional="{$objVocacional[tipo]->voc_id}">
+                                        <i class="fa {$objVocacional[tipo]->icon_estado}" id="icon_{$objVocacional[tipo]->voc_id}"></i>
                                     </a>
                                 </td>
                                 <td class="actions">
-                                    <a href="javascript:;" class="icono" id="lIcono_{$objNovedad[tipo]->nov_id}" icono="{$objNovedad[tipo]->icon_estado}" id_novedad="{$objNovedad[tipo]->nov_id}">
-                                        <i class="fa {$objNovedad[tipo]->icon_estado}" id="icon_{$objNovedad[tipo]->nov_id}"></i>
-                                    </a>
-                                </td>
-                                <td class="actions">
-                                    <a href="{$SERVER_ADMIN}seccion/novedad/editar/{$objNovedad[tipo]->nov_id}.html" title="Editar {$objNovedad[tipo]->nov_titulo}">
+                                    <a href="{$SERVER_ADMIN}seccion/vocacional/editar/{$objVocacional[tipo]->voc_id}.html" title="Editar">
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                 </td>

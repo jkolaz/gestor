@@ -27,6 +27,7 @@ class Novedad_model extends CI_Model{
     public $nov_sed_id;
     public $nov_listado;
     public $nov_contactenos;
+    public $nov_fecha_publicacion;
     
     public function __construct() {
         parent::__construct();
@@ -38,7 +39,7 @@ class Novedad_model extends CI_Model{
     public function getAll($where = array()){
         $where['nov_estado <='] = 1;
         
-        $query = $this->db->where($where)->order_by('nov_titulo')->get(self::$_table);
+        $query = $this->db->where($where)->order_by('nov_fecha_publicacion', 'desc')->get(self::$_table);
         
         if($query->num_rows > 0){
             return $query->result();
@@ -80,6 +81,9 @@ class Novedad_model extends CI_Model{
         if(isset($post['txt_nov_sed_id'])){
             $this->nov_sed_id = $post['txt_nov_sed_id'];
         }
+        if(isset($post['txt_nov_fecha_publicacion'])){
+            $this->nov_fecha_publicacion = $post['txt_nov_fecha_publicacion'];
+        }
     }
     public function insert(){
         $insert = array();
@@ -106,6 +110,9 @@ class Novedad_model extends CI_Model{
         }
         if($this->nov_imagen != ""){
             $insert['nov_imagen'] = $this->nov_imagen;
+        }
+        if($this->nov_fecha_publicacion != ""){
+            $insert['nov_fecha_publicacion'] = $this->nov_fecha_publicacion;
         }
         if($this->nov_contenido != ""){
             $insert['nov_contenido'] = $this->nov_contenido;
@@ -143,6 +150,7 @@ class Novedad_model extends CI_Model{
             $this->nov_contenido = $arreglo[0]->nov_contenido;
             $this->nov_estado = $arreglo[0]->nov_estado;
             $this->nov_sed_id = $arreglo[0]->nov_sed_id;
+            $this->nov_fecha_publicacion = $arreglo[0]->nov_fecha_publicacion;
         }
     }
     public function update(){
@@ -158,6 +166,9 @@ class Novedad_model extends CI_Model{
         }
         if($this->nov_contactenos != ""){
             $update['nov_contactenos'] = $this->nov_contactenos;
+        }
+        if($this->nov_fecha_publicacion != ""){
+            $update['nov_fecha_publicacion'] = $this->nov_fecha_publicacion;
         }
         if($this->nov_youtube != ""){
             $update['nov_youtube'] = $this->nov_youtube;

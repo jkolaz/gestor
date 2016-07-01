@@ -58,7 +58,7 @@ class Fundador extends CI_Controller{
                     if ((($_FILES["txt_fun_imagen"]["type"] == "image/png")
                         || ($_FILES["txt_fun_imagen"]["type"] == "image/jpeg")
                         || ($_FILES["txt_fun_imagen"]["type"] == "image/jpg"))) {
-                            if(!is_array($_FILES["txt_ser_imagen"]["name"])){
+                            if(!is_array($_FILES["txt_fun_imagen"]["name"])){
                                 $extension = pathinfo($_FILES["txt_fun_imagen"]["name"]);
                                 $destination = uniqid('fundador_').'.'.$extension['extension'];
                                 if(move_uploaded_file($_FILES['txt_fun_imagen']['tmp_name'], PATH_GALLERY.$destination)){

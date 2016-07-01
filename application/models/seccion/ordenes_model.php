@@ -109,7 +109,7 @@ class Ordenes_model extends CI_Model{
     public function update(){
         $update = array();
         if($this->ord_nombre != ""){
-            $updat0e['ord_nombre'] = $this->ord_nombre;
+            $update['ord_nombre'] = $this->ord_nombre;
         }
         if($this->ord_descripcion != ""){
             $update['ord_descripcion'] = $this->ord_descripcion;

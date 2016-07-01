@@ -23,6 +23,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Fecha de publicación</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="txt_nov_fecha_publicacion" id="txt_nov_fecha_publicacion" class="form-control"  required="" readonly="" value="" data-plugin-datepicker="" />
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Código Youtube</label>
                         <div class="col-sm-9">
                             <input type="text" name="txt_nov_youtube" id="txt_men_youtube" class="form-control" value="" maxlength="45" data-plugin-maxlength=""/>

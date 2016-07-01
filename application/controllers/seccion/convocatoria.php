@@ -132,7 +132,9 @@ class Convocatoria extends CI_Controller {
                                     $extension = pathinfo($_FILES["txt_con_imagen"]["name"]);
                                     $destination = uniqid('servicio_').'.'.$extension['extension'];
                                     if(move_uploaded_file($_FILES['txt_con_imagen']['tmp_name'], PATH_GALLERY.$destination)){
-                                        unlink(PATH_GALLERY.$this->convocatoria->con_imagen);
+                                        if($this->convocatoria->con_imagen != ""){
+                                            unlink(PATH_GALLERY.$this->convocatoria->con_imagen);
+                                        }
                                         $this->convocatoria->con_imagen = $destination;
                                     }
                                 }else{

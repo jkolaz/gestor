@@ -1,54 +1,54 @@
 <div class="row">
     {$message}
     <div class="col-md-12">
-        <form id="form" action="{$SERVER_ADMIN}seccion/convocatoria/editar/{$id}" method="post" class="form-horizontal" enctype="multipart/form-data">
+        <form id="form" action="{$SERVER_ADMIN}seccion/saludsocial/editar/{$id}" method="post" class="form-horizontal" enctype="multipart/form-data">
             <input name="txt_action" id="txt_action" type="hidden" value="editar">
             <section class="panel">
                 <header class="panel-heading">
-
-                    <h2 class="panel-title">Editar de Convocatoria</h2>
+                    <h2 class="panel-title">Salud y Social  - <b>{$sede_nombre}</b></h2>
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Nombre <span class="required">*</span></label>
-                        <div class="col-sm-9">
-                            <input type="text" name="txt_con_nombre" id="txt_con_nombre" class="form-control" required value="{$stdConvocatoria->con_nombre}" maxlength="150" data-plugin-maxlength=""/>
-                            <p><code>Máximo</code> 150.</p>
+                        <div class="col-sm-6">
+                            <input type="text" name="txt_ss_nombre" id="txt_ss_nombre" class="form-control" required value="{$stdSS->ss_nombre}" maxlength="50" data-plugin-maxlength=""/>
+                            <p><code>Máximo</code> 50.</p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">URL <span class="required">*</span></label>
-                        <div class="col-sm-4">
-                            <select data-plugin-selectTwo id="txt_con_url" name="txt_con_url" class="form-control populate" required>
-                                <option value="">-Seleccionar-</option>
-                                {if $objMenu|@count gt 0}
-                                    {section name=id loop=$objMenu}
-                                        <optgroup label="{$objMenu[id]->men_nombre}">
-                                            {if $objMenu[id]->sub_menu|@count gt 0}
-                                                {section name=sm loop=$objMenu[id]->sub_menu}
-                                                    <option value="{$objMenu[id]->sub_menu[sm]->men_ruta}" {$objMenu[id]->sub_menu[sm]->selected}>{$objMenu[id]->sub_menu[sm]->men_nombre}</option>
-                                                {/section}
-                                            {/if}
-                                        </optgroup>
-                                    {/section}
-                                {/if}
+                        <label class="col-sm-3 control-label">Tipo Presentación <span class="required">*</span></label>
+                        <div class="col-sm-5">
+                            <select data-plugin-selectTwo id="txt_ss_tc_id" name="txt_ss_tc_id" class="form-control populate" required>
+                                <option value="">Seleccionar sede</option>
+                                <optgroup label="Sede">
+                                    {if $objTC|@count gt 0}
+                                        {section name=id loop=$objTC}
+                                    <option value="{$objTC[id]->tc_id}" {$objTC[id]->selected}>{$objTC[id]->tc_descripcion}</option>
+                                        {/section}
+                                    {/if}
+                                </optgroup>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Contenido <span class="required">*</span></label>
                         <div class="col-sm-9">
-                            <div class="summernote" data-plugin-summernote data-plugin-options='{literal}{"id_textarea":"txt_con_descripcion", "height": 180, "codemirror": { "theme": "ambiance" } }{/literal}'>{$stdConvocatoria->con_descripcion}</div>
+                            <div class="summernote" data-plugin-summernote data-plugin-options='{literal}{"id_textarea":"txt_ss_descripcion", "height": 180, "codemirror": { "theme": "ambiance" } }{/literal}'>{$stdSS->ss_descripcion}</div>
                         </div>
                     </div>
+                    {if $stdSS->ss_imagen neq ""}
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Imagen<b>(.jpeg, .jpg, .gif, .png)</b></label>
+                        <label class="col-sm-3 control-label">Imagen <b>Actual</b></label>
                         <div class="col-sm-1">
-                            <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$stdConvocatoria->con_imagen}">
-                                <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$stdConvocatoria->con_imagen}">
+                            <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$stdSS->ss_imagen}">
+                                <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$stdSS->ss_imagen}">
                             </a>
                         </div>
-                        <div class="col-sm-5">
+                    </div>
+                    {/if}
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Imagen <b>(.jpeg, .jpg, .gif, .png)</b> <span class="required">*</span></label>
+                        <div class="col-sm-9">
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="input-append">
                                     <div class="uneditable-input">
@@ -58,7 +58,7 @@
                                     <span class="btn btn-default btn-file">
                                         <span class="fileupload-exists">Cambiar</span>
                                         <span class="fileupload-new">Seleccionar Archivo</span>
-                                        <input type="file" name="txt_con_imagen" id="txt_con_imagen" />
+                                        <input type="file" name="txt_ss_imagen" id="txt_ss_imagen"/>
                                     </span>
                                     <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Eliminar</a>
                                 </div>
