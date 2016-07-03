@@ -15,9 +15,6 @@
                     <li>
                         <a href="{$SERVER_ADMIN}{$URL_PANEL}"><i class="fa fa-caret-right text-dark"></i> Panel</a>
                     </li>
-                    <li>
-                        <a href="{$SERVER_ADMIN}seguridad/usuario.html"><i class="fa fa-caret-right text-dark"></i> Perfil del usuario</a>
-                    </li>
                 </ul>
             </div>
         </div>

@@ -116,4 +116,34 @@ class Menu_model extends CI_Controller{
         }
         return NULL;
     }
+    
+    public function getMenuPermiso($sede){
+        $aPadre = array();
+        $return = array();
+        $where['men_estado'] = 1;
+        $where['men_padre !='] = 0;
+        $where['mw_estado'] = 1;
+        $where['mw_sed_id'] = $sede;
+        $query1 = $this->db->where($where)
+                    ->join(self::$_table, 'gc_menu.men_id=gc_menu_web.mw_men_id')
+                    ->get('gc_menu_web');
+        if($query1->num_rows > 0){
+            foreach ($query1->result() as $value){
+                $aPadre[] = $value->men_padre;
+            }
+            $aPadre = array_unique($aPadre);
+            if(count($aPadre > 0)){
+                $where2['men_estado'] = 1;
+                $where2['men_padre'] = 0;
+                $query2 = $this->db->where($where2)
+                            ->where_in(self::$_PK, $aPadre)
+                            ->order_by('men_orden')
+                            ->get(self::$_table);
+                if($query2->num_rows > 0){
+                    $return = $query2->result();
+                }
+            }
+        }
+        return $return;
+    }
 }

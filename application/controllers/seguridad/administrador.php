@@ -57,7 +57,7 @@ class Administrador extends CI_Controller{
                 $this->smartyci->assign('form', 1);
                 $this->smartyci->assign('ta_nombre', $this->ta->ta_nombre);
                 $this->smartyci->assign('ta', $this->ta->ta_id);
-                $this->smartyci->assign('sede', $objSede);
+                $this->smartyci->assign('objSede', $objSede);
                 $this->smartyci->show_page(NULL, uniqid());
             }
         }else{

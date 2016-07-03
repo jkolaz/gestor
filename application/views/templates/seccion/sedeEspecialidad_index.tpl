@@ -23,7 +23,7 @@
                                 <td>{$objEspecialidades[tipo]->esp_nombre}</td>
                                 <td class="actions">
                                     <a href="{$SERVER_ADMIN}seccion/sedeEspecialidad/configuracion/{$objEspecialidades[tipo]->se_id}.html" title="Configurar {$objEspecialidades[tipo]->esp_nombre}">
-                                        <i class="fa fa-cogs"></i>
+                                        <i class="fa fa-cogs"></i>Especialidades
                                     </a>
                                 </td>
                             </tr>

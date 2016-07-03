@@ -20,12 +20,23 @@ class Log extends CI_Controller{
     }
     
     public function index(){
-        $this->smartyci->assign('listado', 'Log de actividades');
-        $this->smartyci->show_page(NULL);
+        $action = $this->input->post('txt_action');
+        if(isset($action) && $action == 'buscar'){
+            $fecha = $this->input->post('txt_fecha');
+            if(isset($fecha) && $fecha != ""){
+                $fecha = str_replace('-', '', $fecha);
+                redirect('seguridad/log/readLog/'.$fecha);
+            }else{
+                redirect('seguridad/log/index');
+            }
+        }else{
+            $this->smartyci->assign('listado', 'Log de actividades');
+            $this->smartyci->assign('form', 1);
+            $this->smartyci->show_page(NULL);
+        }
     }
     
     public function readLog($fecha){
-        //$fecha = str_replace('-', '_', $post['txt_fecha']);
         $p_file = PATH_ADMIN . "application/logs/web/".$fecha.".log";
         $linea = array();
         if (file_exists($p_file)) {
@@ -48,6 +59,8 @@ class Log extends CI_Controller{
             }
         }
         $this->smartyci->assign('log', $log);
+        $this->smartyci->assign('details', 'Log de actividades');
+        $this->smartyci->assign('url_back', 'seguridad/log/index');
         $this->smartyci->show_page(NULL,  uniqid());
     }
 }

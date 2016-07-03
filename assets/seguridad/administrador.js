@@ -2,6 +2,10 @@ var controlador = 'seguridad/administrador/';
 jQuery(document).ready( function() {
     nuevo();
     estado();
+    $('#cancelar').click(function(){
+        var url = base_url+controlador+"index.html";
+        location.href = url;
+    });
 });
 function nuevo(){
     $('.nuevo_adm').click(function(){

@@ -55,9 +55,9 @@
                             <select data-plugin-selectTwo id="txt_adm_sed_id" name="txt_adm_sed_id" class="form-control populate">
                                 <option value="">Seleccionar sede</option>
                                 <optgroup label="Sede">
-                                    {if $sede|@count gt 0}
-                                        {section name=id loop=$sede}
-                                    <option value="{$sede[id]->sed_id}">{$sede[id]->sed_nombre}</option>
+                                    {if $objSede|@count gt 0}
+                                        {section name=id loop=$objSede}
+                                    <option value="{$objSede[id]->sed_id}">{$objSede[id]->sed_nombre}</option>
                                         {/section}
                                     {/if}
                                 </optgroup>
@@ -69,7 +69,7 @@
                     <div class="row">
                         <div class="col-sm-9 col-sm-offset-3">
                             <button class="btn btn-primary">Guardar</button>
-                            <button type="button" class="btn btn-default">Cancelar</button>
+                            <button type="button" class="btn btn-default" id="cancelar">Cancelar</button>
                             <!--<button type="reset" class="btn btn-default">Reset</button>-->
                         </div>
                     </div>

@@ -15,9 +15,17 @@ class Principal extends CI_Controller{
     //put your code here
     public function __construct() {
         parent::__construct();
+        $this->load->model('configuracion/menu_model', 'menu');
     }
     
     public function index(){
-        $this->smartyci->show_page(NULL,  uniqid());
+        $sede = $this->session->userdata('sede');
+        if($sede > 0){
+            $objeto = $this->menu->getMenuPermiso($sede);
+            $this->smartyci->assign('objMenu', $objeto);
+            $this->smartyci->show_page('seguridad/principal_menu.tpl', uniqid());
+        }else{
+            $this->smartyci->show_page(NULL,  uniqid());
+        }
     }
 }

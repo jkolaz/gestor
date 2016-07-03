@@ -10,7 +10,7 @@
         <h2 class="panel-title">{$objMenu[tipo]->men_nombre}</h2>
     </header>
     <div class="panel-body">
-        <div class="row">
+        <!--<div class="row">
             <div class="col-sm-6">
                 <div class="mb-md configuracion" sede="{$id}" menu="{$objMenu[tipo]->men_id}">
                     <button id="addToTable" class="btn btn-primary">
@@ -26,7 +26,7 @@
                 </a>
             </div>
             {/if}
-        </div>
+        </div>-->
             <div class="table-responsive">
                     <input type="hidden" name="txt_sed_id" id="txt_sed_id" value="{$id}" />
                     <table class="table mb-none">
@@ -34,8 +34,8 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>URL</th>
-                                <!--<th>Imagen</th>
-                                <th>Configuración</th>-->
+                                <th>Imagen</th>
+                                <th>Configuración</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -45,7 +45,7 @@
                             <tr>
                                 <td>{$objMenu[tipo]->men_submenu[adm]->men_nombre}</td>
                                 <td>http://www.sanjuandedios.com/seccion/{$nombre_url}/{$objMenu[tipo]->men_ruta}/<b style="color:#0088cc">{$objMenu[tipo]->men_submenu[adm]->men_ruta}</b></td>
-                                <!--<td>
+                                <td>
                                     {if $objMenu[tipo]->men_submenu[adm]->imagen neq ""}
                                     <a class="image-popup-no-margins" href="{$SERVER_GALLERY}{$objMenu[tipo]->men_submenu[adm]->imagen}">
                                         <img class="img-responsive" width="75" src="{$SERVER_GALLERY}{$objMenu[tipo]->men_submenu[adm]->imagen}">
@@ -56,7 +56,7 @@
                                     <a href="{$SERVER_ADMIN}seccion/menuweb/configuracion/{$id}/{$objMenu[tipo]->men_submenu[adm]->men_id}.html" title="Configurar {$objMenu[tipo]->men_nombre}">
                                         <i class="fa fa-cogs"></i>Configuración
                                     </a>
-                                </td>-->
+                                </td>
                                 <td class="actions">
                                     <div class="switch switch-sm switch-primary menu_web" id_menu="{$objMenu[tipo]->men_submenu[adm]->men_id}">
                                         <input type="checkbox" name="txt_men_id[]" id="txt_men_id_{$objMenu[tipo]->men_submenu[adm]->men_id}" data-plugin-ios-switch value="{$objMenu[tipo]->men_submenu[adm]->men_id}" {$objMenu[tipo]->men_submenu[adm]->checked} />
