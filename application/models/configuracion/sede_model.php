@@ -26,6 +26,7 @@ class Sede_model extends CI_Model{
     public $sed_farmacia_s;
     public $sed_visita;
     public $sed_direccion;
+    public $sed_correo;
     public function __construct() {
         parent::__construct(); 
         $this->load->database();
@@ -59,6 +60,7 @@ class Sede_model extends CI_Model{
             $this->sed_farmacia_s = $arreglo[0]->sed_farmacia_s;
             $this->sed_visita = $arreglo[0]->sed_visita;
             $this->sed_direccion = $arreglo[0]->sed_direccion;
+            $this->sed_correo = $arreglo[0]->sed_correo;
         }
     }
     
@@ -87,6 +89,9 @@ class Sede_model extends CI_Model{
         if(isset($post['txt_sed_direccion'])){
             $this->sed_direccion = $post['txt_sed_direccion'];
         }
+        if(isset($post['txt_sed_correo'])){
+            $this->sed_correo = $post['txt_sed_correo'];
+        }
     }
     public function insert(){
         $insert = array();
@@ -111,6 +116,9 @@ class Sede_model extends CI_Model{
         }
         if($this->sed_direccion != ""){
             $insert['sed_direccion'] = $this->sed_direccion;
+        }
+        if($this->sed_correo != ""){
+            $insert['sed_correo'] = $this->sed_correo;
         }
         if($this->sed_reg_id >= 0){
             $insert['sed_reg_id'] = $this->sed_reg_id;
@@ -148,6 +156,9 @@ class Sede_model extends CI_Model{
         }
         if($this->sed_direccion != ""){
             $update['sed_direccion'] = $this->sed_direccion;
+        }
+        if($this->sed_correo != ""){
+            $update['sed_correo'] = $this->sed_correo;
         }
         if($this->sed_estado >= 0){
             $update['sed_estado'] = $this->sed_estado;

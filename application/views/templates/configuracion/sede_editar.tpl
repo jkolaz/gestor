@@ -17,6 +17,24 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
+                        <label class="col-sm-3 control-label">Dirección <span class="required">*</span></label>
+                        <div class="col-sm-9">
+                            <input type="text" name="txt_sed_direccion" id="txt_sed_direccion" class="form-control" maxlength="100" data-plugin-maxlength="" required value="{$stdSede->sed_direccion}" />
+                            <p><code>Máximo</code> 100.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Correo <span class="required">*</span></label>
+                        <div class="col-sm-5">
+                            <input type="text" name="txt_sed_correo" id="txt_sed_correo" class="form-control" maxlength="100" data-plugin-maxlength="" required value="{$stdSede->sed_correo}" />
+                            <p><code>Máximo</code> 100.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
                         <label class="col-sm-3 control-label">Visita Hospitalización <span class="required">*</span></label>
                         <div class="col-sm-9">
                             <textarea class="form-control" name="txt_sed_visita" id="txt_sed_visita" maxlength="250" data-plugin-maxlength="" required rows="3">{$stdSede->sed_visita}</textarea>
